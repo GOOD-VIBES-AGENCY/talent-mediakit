@@ -931,7 +931,7 @@
     const tbody = document.getElementById('pricing-tbody');
     TALENT.pricing.forEach(p => {
       const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${p.type}</td><td><span class="pricing-price">${p.price}</span><span class="pricing-unit">/ ${p.note}</span></td>`;
+      tr.innerHTML = `<td>${p.type}</td><td style="text-align:right;"><span style="display:block;font-size:1.15rem;font-weight:300;color:#111;letter-spacing:-0.01em;">${p.price}</span><span style="display:block;font-size:0.62rem;letter-spacing:0.08em;color:#999;margin-top:0.2rem;">/ ${p.note}</span></td>`;
       tbody.appendChild(tr);
     });
 
