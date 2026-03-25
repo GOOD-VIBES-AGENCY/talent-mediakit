@@ -907,18 +907,7 @@
       genreTags.appendChild(tag);
     });
 
-    const casesGrid = document.getElementById('cases-grid');
-    TALENT.cases.forEach(c => {
-      const card = document.createElement('div');
-      card.className = 'case-card';
-      card.innerHTML = `
-        <div class="case-type">${c.type}</div>
-        <div class="case-brand">${c.brand}</div>
-        <div class="case-parent">${c.parent}</div>
-        <div class="case-desc">${c.desc}</div>
-      `;
-      casesGrid.appendChild(card);
-    });
+    // cases section removed
 
     const tbody = document.getElementById('pricing-tbody');
     TALENT.pricing.forEach(p => {
