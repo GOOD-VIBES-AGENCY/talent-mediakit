@@ -511,28 +511,35 @@
     }
     .pricing-table tbody tr:hover { background: var(--bg); }
 
-    .pricing-table td { padding: 1.25rem; }
+    .pricing-table td { padding: 1.1rem 1.25rem; }
 
     .pricing-table td:first-child {
       font-family: var(--ja);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--dark);
       font-weight: 400;
       white-space: nowrap;
-    }
-
-    .pricing-table td:nth-child(2) {
-      font-size: 1.3rem;
-      font-weight: 300;
-      color: var(--black);
-      letter-spacing: -0.01em;
+      width: 50%;
     }
 
     .pricing-table td:last-child {
-      font-size: 0.65rem;
+      text-align: right;
+    }
+
+    .pricing-price {
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: var(--black);
+      letter-spacing: -0.01em;
+      display: block;
+    }
+
+    .pricing-unit {
+      font-size: 0.62rem;
       letter-spacing: 0.08em;
       color: var(--light);
-      text-align: right;
+      margin-top: 0.2rem;
+      display: block;
     }
 
     .pricing-note {
@@ -784,8 +791,7 @@
         <thead>
           <tr>
             <th>Format</th>
-            <th>Price</th>
-            <th>Unit</th>
+            <th style="text-align:right;">Price</th>
           </tr>
         </thead>
         <tbody id="pricing-tbody"></tbody>
@@ -925,7 +931,7 @@
     const tbody = document.getElementById('pricing-tbody');
     TALENT.pricing.forEach(p => {
       const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${p.type}</td><td>${p.price}</td><td>${p.note}</td>`;
+      tr.innerHTML = `<td>${p.type}</td><td><span class="pricing-price">${p.price}</span><span class="pricing-unit">/ ${p.note}</span></td>`;
       tbody.appendChild(tr);
     });
 
