@@ -71,7 +71,7 @@
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; }
+    html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; max-width: 100vw; }
 
     :root {
       --white:    #ffffff;
@@ -667,7 +667,11 @@
       .profile-grid,
       .genres-layout { grid-template-columns: 1fr; gap: 2.5rem; }
 
-      .sns-grid { grid-template-columns: 1fr; }
+      .sns-grid { grid-template-columns: 1fr; width: 100%; }
+      .sns-card { padding: 2rem 1.25rem; }
+      .sns-total { padding: 2rem 1.25rem; }
+      .container { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+      .sns-section .container { overflow: hidden; }
       .cases-grid { grid-template-columns: 1fr; }
 
       section { padding: 4rem 0; }
