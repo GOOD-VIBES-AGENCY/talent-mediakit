@@ -1001,12 +1001,12 @@
       a.target = '_blank';
       a.rel = 'noopener';
       a.className = 'post-card';
-      const badge = p.type === 'VIDEO' ? 'REEL' : 'POST';
+      const badge = p.type === 'REEL' ? 'REEL' : 'FEED';
       const statsHTML = `<span class="post-stat">♥ ${p.likes.toLocaleString()}</span><span class="post-stat">💬 ${p.comments}</span>`;
       if (p.thumb) {
         a.innerHTML = `<img class="post-thumb" src="${p.thumb}" alt="" loading="lazy"><div class="post-overlay">${statsHTML}</div><span class="post-type-badge">${badge}</span>`;
       } else {
-        a.innerHTML = `<div class="post-placeholder">${badge}</div><div class="post-overlay">${statsHTML}</div>`;
+        a.innerHTML = `<div class="post-placeholder" style="flex-direction:column;gap:0.5rem;"><span style="font-size:0.55rem;letter-spacing:0.1em;color:#999;">${badge}</span><span style="font-size:0.6rem;color:#bbb;">TAP TO VIEW</span></div>`;
       }
       postsGrid.appendChild(a);
     });
