@@ -190,11 +190,16 @@
     }
 
     .hero-handle {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
+      font-size: 0.7rem;
+      letter-spacing: 0.05em;
       color: var(--mid);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem;
     }
+    .hero-handle a:hover { color: var(--black); }
 
     .hero-tagline {
       font-family: var(--ja);
@@ -640,7 +645,9 @@
     /* ── Responsive ── */
     @media (max-width: 900px) {
       nav { padding: 1rem 1.5rem; }
-      .container { padding: 0 1.5rem; }
+      .container { padding: 0 1.25rem; max-width: 100%; }
+      body { overflow-x: hidden; }
+      * { max-width: 100%; }
 
       .hero {
         grid-template-columns: 1fr;
@@ -684,7 +691,7 @@
       <p class="hero-label">Talent — Beauty Creator</p>
       <h1 class="hero-name-en" id="hero-name-en"></h1>
       <p class="hero-name-ja" id="hero-name-ja"></p>
-      <p class="hero-handle" id="hero-handle"></p>
+      <div class="hero-handle" id="hero-handle"></div>
       <p class="hero-tagline" id="hero-tagline"></p>
       <div class="hero-followers">
         <div class="hero-stat">
@@ -808,7 +815,14 @@
     document.getElementById('hero-photo').alt = TALENT.nameJa + ' — MOMOKA';
     document.getElementById('hero-name-en').textContent = TALENT.name;
     document.getElementById('hero-name-ja').textContent = TALENT.nameJa;
-    document.getElementById('hero-handle').textContent = TALENT.sns.instagram.handle + '  ·  ' + TALENT.sns.tiktok.handle;
+    document.getElementById('hero-handle').innerHTML =
+      '<a href="' + TALENT.sns.instagram.url + '" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.3em;color:inherit;text-decoration:none;margin-right:0.8em;">'
+      + '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" fill="currentColor" stroke="none"/></svg>'
+      + ' Instagram ' + TALENT.sns.instagram.handle + '</a>'
+      + '<span style="color:var(--border);">|</span>'
+      + '<a href="' + TALENT.sns.tiktok.url + '" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.3em;color:inherit;text-decoration:none;margin-left:0.8em;">'
+      + '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.26 8.26 0 0 0 4.83 1.54V6.77a4.85 4.85 0 0 1-1.06-.08z"/></svg>'
+      + ' TikTok ' + TALENT.sns.tiktok.handle + '</a>';
     document.getElementById('hero-tagline').textContent = TALENT.taglineJa;
     document.getElementById('hero-instagram-followers').textContent = TALENT.sns.instagram.followers;
     document.getElementById('hero-tiktok-followers').textContent = TALENT.sns.tiktok.followers;
