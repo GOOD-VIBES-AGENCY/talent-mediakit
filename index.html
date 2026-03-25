@@ -6,13 +6,9 @@
   <title>MOMOKA — Media Kit</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cormorant:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=Didact+Gothic&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
 
   <script>
-  /* ──────────────────────────────────────
-     TALENT DATA — swap this object to
-     generate a new talent's media kit
-  ────────────────────────────────────── */
   const TALENT = {
     name:        "MOMOKA",
     nameJa:      "桃佳",
@@ -24,7 +20,7 @@
     height:      "169 cm",
     birthplace:  "東京都",
     bio:         "東京生まれ。アメリカ留学経験を持ち英語も堪能なビューティークリエイター。泣き顔メイク・あざとメイクを中心に、リアルなコスメレビューや日常ライフスタイルを発信。透明感のあるビジュアルとトレンドを掴む感度の高さが支持される。",
-    photo:       "https://scontent-nrt6-1.xx.fbcdn.net/v/t51.82787-15/535376957_18325763794225979_7017405374389164756_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=7d201b&_nc_ohc=Yrq24rpT4nMQ7kNvwHcuznU&_nc_oc=AdrzGfMA8CZ6JfTzLhVOJwn0wrwArJj-ws0KGTuVWL5Wj6ReGJT4Tjn91CqaMkh22-4ppnYfANnpwEWhw8T5aCwC&_nc_zt=23&_nc_ht=scontent-nrt6-1.xx&oh=00_AfxRZk9NVaaWFQzhgQYuwGkPKxWN0XMz-Ion99o0GnpK7A&oe=69C95021",
+    photo:       "./momoka.jpg",
     sns: {
       instagram: {
         handle:    "@moo_mo_k",
@@ -74,42 +70,38 @@
   </script>
 
   <style>
-    /* ── Reset & Base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
 
     :root {
-      --white:      #ffffff;
-      --offwhite:   #faf9f7;
-      --cream:      #f5f1eb;
-      --beige:      #e8e0d5;
-      --taupe:      #c8bfb2;
-      --black:      #0e0e0e;
-      --dark:       #1a1a1a;
-      --mid:        #6b6b6b;
-      --light:      #9a9a9a;
-      --accent:     #a89880;
-      --border:     #e0dbd4;
+      --white:    #ffffff;
+      --bg:       #f8f8f6;
+      --bg2:      #f2f1ef;
+      --border:   #e4e3e0;
+      --black:    #111111;
+      --dark:     #222222;
+      --mid:      #666666;
+      --light:    #999999;
+      --accent:   #b8a898;
 
-      --serif:      'Cormorant Garamond', 'Noto Serif JP', Georgia, serif;
-      --serif2:     'Cormorant', serif;
-      --sans:       'Didact Gothic', 'Noto Serif JP', sans-serif;
-      --ja:         'Noto Serif JP', serif;
+      --sans:     'Inter', 'Noto Sans JP', sans-serif;
+      --ja:       'Noto Sans JP', 'Inter', sans-serif;
     }
 
     body {
-      background: var(--offwhite);
+      background: var(--white);
       color: var(--dark);
       font-family: var(--sans);
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       overflow-x: hidden;
+      line-height: 1.6;
     }
 
     img { display: block; max-width: 100%; }
     a { color: inherit; text-decoration: none; }
 
-    /* ── Navigation ── */
+    /* ── Nav ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -117,47 +109,42 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.4rem 3rem;
-      background: rgba(250, 249, 247, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      padding: 1.25rem 3rem;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid transparent;
       transition: border-color 0.3s;
     }
-    nav.scrolled {
-      border-bottom-color: var(--border);
-    }
+    nav.scrolled { border-bottom-color: var(--border); }
 
     .nav-logo {
-      font-family: var(--sans);
       font-size: 0.7rem;
-      letter-spacing: 0.25em;
+      font-weight: 500;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--dark);
-      font-weight: 400;
     }
 
     .nav-right {
-      font-family: var(--sans);
       font-size: 0.65rem;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--mid);
+      color: var(--light);
     }
 
     /* ── Hero ── */
     .hero {
       min-height: 100vh;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      position: relative;
+      grid-template-columns: 1.1fr 0.9fr;
       padding-top: 4rem;
     }
 
     .hero-image-col {
       position: relative;
       overflow: hidden;
-      background: var(--cream);
+      background: var(--bg2);
     }
 
     .hero-img {
@@ -165,100 +152,84 @@
       height: 100%;
       object-fit: cover;
       object-position: top center;
-      transition: transform 8s ease;
-    }
-    .hero-img:hover { transform: scale(1.03); }
-
-    .hero-image-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to right, transparent 60%, var(--offwhite) 100%);
-      pointer-events: none;
     }
 
     .hero-text-col {
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 5rem 4rem 5rem 3rem;
-      position: relative;
+      justify-content: center;
+      padding: 4rem 4rem 4rem 3.5rem;
+      background: var(--white);
     }
 
     .hero-label {
-      font-family: var(--sans);
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.5rem;
     }
 
     .hero-name-en {
-      font-family: var(--serif);
+      font-size: clamp(3.5rem, 7vw, 6rem);
       font-weight: 300;
-      font-size: clamp(4rem, 8vw, 7rem);
-      line-height: 0.9;
-      letter-spacing: -0.02em;
+      line-height: 1;
+      letter-spacing: 0.05em;
       color: var(--black);
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.4rem;
     }
 
     .hero-name-ja {
       font-family: var(--ja);
+      font-size: clamp(1rem, 1.6vw, 1.3rem);
       font-weight: 300;
-      font-size: clamp(1.2rem, 2vw, 1.8rem);
-      letter-spacing: 0.3em;
+      letter-spacing: 0.35em;
       color: var(--mid);
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
     }
 
     .hero-handle {
-      font-family: var(--sans);
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
       color: var(--mid);
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.5rem;
     }
 
     .hero-tagline {
-      font-family: var(--serif);
-      font-style: italic;
+      font-family: var(--ja);
+      font-size: clamp(0.9rem, 1.4vw, 1.05rem);
       font-weight: 300;
-      font-size: clamp(1.1rem, 1.8vw, 1.4rem);
       color: var(--dark);
-      margin-bottom: 3rem;
-      line-height: 1.5;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
     }
 
     .hero-followers {
       display: flex;
-      gap: 2.5rem;
-      padding-top: 2.5rem;
+      gap: 2rem;
+      padding-top: 2rem;
       border-top: 1px solid var(--border);
     }
 
-    .hero-stat {}
     .hero-stat-num {
-      font-family: var(--serif);
+      font-size: 1.6rem;
       font-weight: 400;
-      font-size: 1.8rem;
-      letter-spacing: -0.02em;
       color: var(--black);
-      line-height: 1;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
     }
     .hero-stat-label {
-      font-family: var(--sans);
-      font-size: 0.6rem;
+      font-size: 0.58rem;
+      font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--light);
-      margin-top: 0.3rem;
+      margin-top: 0.25rem;
     }
 
     /* ── Section Base ── */
-    section {
-      padding: 6rem 0;
-    }
+    section { padding: 6rem 0; }
 
     .container {
       max-width: 1100px;
@@ -267,35 +238,33 @@
     }
 
     .section-label {
-      font-family: var(--sans);
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
 
     .section-title {
-      font-family: var(--serif);
+      font-family: var(--ja);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
       font-weight: 300;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      line-height: 1.1;
+      line-height: 1.2;
       color: var(--black);
-      margin-bottom: 3rem;
-      letter-spacing: -0.01em;
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.02em;
     }
 
     .divider {
-      width: 40px;
+      width: 32px;
       height: 1px;
-      background: var(--taupe);
-      margin: 0 0 3rem;
+      background: var(--border);
+      margin: 0 0 2.5rem;
     }
 
-    /* ── Profile Section ── */
-    .profile-section {
-      background: var(--white);
-    }
+    /* ── Profile ── */
+    .profile-section { background: var(--bg); }
 
     .profile-grid {
       display: grid;
@@ -307,77 +276,61 @@
     .profile-bio {
       font-family: var(--ja);
       font-size: 0.95rem;
-      line-height: 2;
+      line-height: 2.1;
       color: var(--mid);
       font-weight: 300;
-      margin-bottom: 2.5rem;
-    }
-
-    .profile-facts {
-      display: grid;
-      gap: 0;
+      margin-bottom: 2rem;
     }
 
     .fact-row {
       display: flex;
-      padding: 0.9rem 0;
+      padding: 0.85rem 0;
       border-bottom: 1px solid var(--border);
       gap: 1.5rem;
+      align-items: baseline;
     }
-    .fact-row:first-child {
-      border-top: 1px solid var(--border);
-    }
+    .fact-row:first-child { border-top: 1px solid var(--border); }
 
     .fact-label {
-      font-family: var(--sans);
       font-size: 0.6rem;
-      letter-spacing: 0.2em;
+      font-weight: 500;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--light);
       width: 80px;
       flex-shrink: 0;
-      padding-top: 0.15rem;
     }
 
     .fact-value {
       font-family: var(--ja);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--dark);
       font-weight: 400;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
     .strengths-list {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
     }
 
     .strength-tag {
-      font-family: var(--sans);
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.5rem 1rem;
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      padding: 0.45rem 0.9rem;
       border: 1px solid var(--border);
       color: var(--mid);
-      background: var(--offwhite);
-      transition: all 0.2s;
-    }
-    .strength-tag:hover {
-      background: var(--dark);
-      color: var(--white);
-      border-color: var(--dark);
+      background: var(--white);
+      font-family: var(--ja);
     }
 
     /* ── SNS Stats ── */
-    .sns-section {
-      background: var(--black);
-    }
-
-    .sns-section .section-label { color: var(--taupe); }
-    .sns-section .section-title { color: var(--white); }
+    .sns-section { background: var(--black); }
+    .sns-section .section-label { color: #888; }
+    .sns-section .section-title { color: var(--white); font-family: var(--sans); font-weight: 300; letter-spacing: 0; }
 
     .sns-grid {
       display: grid;
@@ -385,215 +338,173 @@
       gap: 1px;
       background: #2a2a2a;
       border: 1px solid #2a2a2a;
-      margin-bottom: 3rem;
+      margin-bottom: 1px;
     }
 
     .sns-card {
-      background: var(--dark);
-      padding: 3rem;
-      position: relative;
-      overflow: hidden;
+      background: #1a1a1a;
+      padding: 2.5rem 3rem;
+      cursor: pointer;
+      transition: background 0.2s;
     }
-    .sns-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 3px; height: 100%;
-      background: var(--accent);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .sns-card:hover::before { opacity: 1; }
+    .sns-card:hover { background: #222; }
 
     .sns-platform {
-      font-family: var(--sans);
       font-size: 0.6rem;
-      letter-spacing: 0.3em;
+      font-weight: 500;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--taupe);
-      margin-bottom: 1.5rem;
+      color: #666;
+      margin-bottom: 1.25rem;
     }
 
     .sns-handle {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 1.1rem;
-      color: var(--white);
-      margin-bottom: 2rem;
-      opacity: 0.7;
-    }
-
-    .sns-metrics {
-      display: flex;
-      gap: 3rem;
-    }
-
-    .metric {}
-    .metric-num {
-      font-family: var(--serif);
+      font-size: 1rem;
       font-weight: 300;
-      font-size: clamp(2rem, 4vw, 3rem);
+      color: #aaa;
+      margin-bottom: 1.75rem;
+    }
+
+    .sns-metrics { display: flex; gap: 2.5rem; }
+
+    .metric-num {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 300;
       color: var(--white);
       line-height: 1;
       letter-spacing: -0.02em;
     }
     .metric-label {
-      font-family: var(--sans);
-      font-size: 0.55rem;
+      font-size: 0.56rem;
+      font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--taupe);
+      color: #555;
       margin-top: 0.4rem;
     }
 
     .sns-total {
+      background: #1a1a1a;
       text-align: center;
       padding: 3rem;
-      border: 1px solid #2a2a2a;
     }
     .sns-total-label {
-      font-family: var(--sans);
       font-size: 0.6rem;
-      letter-spacing: 0.3em;
+      font-weight: 500;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--taupe);
-      margin-bottom: 1rem;
+      color: #555;
+      margin-bottom: 0.75rem;
     }
     .sns-total-num {
-      font-family: var(--serif);
+      font-size: clamp(2.5rem, 5vw, 4rem);
       font-weight: 300;
-      font-size: clamp(3rem, 6vw, 5rem);
       color: var(--white);
-      line-height: 1;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.02em;
     }
 
     /* ── Genres ── */
-    .genres-section {
-      background: var(--cream);
-    }
+    .genres-section { background: var(--white); }
 
     .genres-layout {
       display: grid;
       grid-template-columns: 1fr 2fr;
       gap: 5rem;
-      align-items: center;
-    }
-
-    .genre-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
+      align-items: start;
     }
 
     .genre-tag {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      font-family: var(--ja);
+      font-size: 1.2rem;
       font-weight: 300;
       color: var(--dark);
-      padding: 0.5rem 0;
-      letter-spacing: 0.02em;
-      border-bottom: 1px solid var(--taupe);
-      flex: 0 0 100%;
-      transition: color 0.2s;
     }
-    .genre-tag:hover { color: var(--accent); }
+    .genre-tag:first-child { border-top: 1px solid var(--border); }
 
     .genre-num {
-      font-family: var(--sans);
       font-size: 0.6rem;
-      letter-spacing: 0.2em;
+      font-weight: 500;
+      letter-spacing: 0.15em;
       color: var(--light);
-      margin-right: 1rem;
+      width: 24px;
     }
 
     /* ── Cases ── */
-    .cases-section {
-      background: var(--white);
-    }
+    .cases-section { background: var(--bg); }
 
     .cases-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
+      gap: 1.5rem;
     }
 
     .case-card {
-      padding: 2.5rem;
-      background: var(--offwhite);
-      transition: background 0.3s;
+      padding: 2rem;
+      background: var(--white);
+      border: 1px solid var(--border);
     }
-    .case-card:hover { background: var(--cream); }
 
     .case-type {
-      font-family: var(--sans);
-      font-size: 0.55rem;
-      letter-spacing: 0.25em;
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
 
     .case-brand {
-      font-family: var(--serif);
+      font-size: 1.25rem;
       font-weight: 400;
-      font-size: 1.6rem;
       color: var(--black);
-      line-height: 1.1;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.2rem;
     }
 
     .case-parent {
-      font-family: var(--sans);
       font-size: 0.65rem;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       color: var(--light);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
 
     .case-desc {
       font-family: var(--ja);
       font-size: 0.85rem;
-      line-height: 1.8;
+      line-height: 1.9;
       color: var(--mid);
       font-weight: 300;
     }
 
     /* ── Pricing ── */
-    .pricing-section {
-      background: var(--offwhite);
-    }
+    .pricing-section { background: var(--white); }
 
     .pricing-table {
       width: 100%;
       border-collapse: collapse;
     }
 
-    .pricing-table thead tr {
-      border-bottom: 1px solid var(--border);
-    }
-
     .pricing-table th {
-      font-family: var(--sans);
-      font-size: 0.55rem;
-      letter-spacing: 0.25em;
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--light);
-      padding: 0.8rem 1.5rem;
+      padding: 0.75rem 1.25rem;
       text-align: left;
-      font-weight: 400;
+      border-bottom: 1px solid var(--border);
     }
 
     .pricing-table tbody tr {
       border-bottom: 1px solid var(--border);
-      transition: background 0.2s;
     }
-    .pricing-table tbody tr:hover { background: var(--cream); }
+    .pricing-table tbody tr:hover { background: var(--bg); }
 
-    .pricing-table td {
-      padding: 1.5rem;
-    }
+    .pricing-table td { padding: 1.25rem; }
 
     .pricing-table td:first-child {
       font-family: var(--ja);
@@ -603,26 +514,25 @@
     }
 
     .pricing-table td:nth-child(2) {
-      font-family: var(--serif);
-      font-size: 1.4rem;
-      color: var(--black);
+      font-size: 1.3rem;
       font-weight: 300;
+      color: var(--black);
+      letter-spacing: -0.01em;
     }
 
     .pricing-table td:last-child {
-      font-family: var(--sans);
       font-size: 0.65rem;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       color: var(--light);
       text-align: right;
     }
 
     .pricing-note {
       font-family: var(--ja);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--light);
-      margin-top: 2rem;
-      line-height: 1.8;
+      margin-top: 1.75rem;
+      line-height: 2;
       font-weight: 300;
     }
 
@@ -630,80 +540,71 @@
     .cta-section {
       background: var(--black);
       text-align: center;
-      padding: 8rem 0;
+      padding: 7rem 0;
     }
 
     .cta-label {
-      font-family: var(--sans);
-      font-size: 0.6rem;
-      letter-spacing: 0.35em;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: var(--taupe);
-      margin-bottom: 2rem;
+      color: #555;
+      margin-bottom: 1.75rem;
     }
 
     .cta-title {
-      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.5rem);
       font-weight: 300;
-      font-style: italic;
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
       color: var(--white);
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.01em;
     }
 
     .cta-sub {
-      font-family: var(--sans);
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      color: var(--taupe);
-      margin-bottom: 3.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: #555;
+      margin-bottom: 3rem;
     }
 
     .cta-buttons {
       display: flex;
       gap: 1rem;
       justify-content: center;
-      align-items: center;
       flex-wrap: wrap;
     }
 
     .btn-primary {
-      font-family: var(--sans);
       font-size: 0.65rem;
-      letter-spacing: 0.25em;
+      font-weight: 500;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--black);
       background: var(--white);
-      padding: 1.1rem 2.5rem;
+      padding: 1rem 2.25rem;
       display: inline-block;
-      transition: all 0.25s;
+      transition: background 0.2s;
     }
-    .btn-primary:hover {
-      background: var(--accent);
-      color: var(--white);
-    }
+    .btn-primary:hover { background: var(--bg2); }
 
     .btn-ghost {
-      font-family: var(--sans);
       font-size: 0.65rem;
-      letter-spacing: 0.25em;
+      font-weight: 500;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--white);
       border: 1px solid #444;
-      padding: 1.1rem 2.5rem;
+      padding: 1rem 2.25rem;
       display: inline-block;
-      transition: all 0.25s;
+      transition: border-color 0.2s;
     }
-    .btn-ghost:hover {
-      border-color: var(--white);
-    }
+    .btn-ghost:hover { border-color: #888; }
 
     /* ── Footer ── */
     footer {
-      background: var(--offwhite);
-      padding: 2.5rem 3rem;
+      background: var(--bg);
+      padding: 2rem 3rem;
       border-top: 1px solid var(--border);
       display: flex;
       align-items: center;
@@ -711,26 +612,25 @@
     }
 
     .footer-agency {
-      font-family: var(--sans);
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--mid);
     }
 
     .footer-confidential {
-      font-family: var(--sans);
-      font-size: 0.55rem;
-      letter-spacing: 0.2em;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--light);
     }
 
-    /* ── Scroll reveal animations ── */
+    /* ── Reveal ── */
     .reveal {
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(16px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
     .reveal.visible {
       opacity: 1;
@@ -739,7 +639,7 @@
 
     /* ── Responsive ── */
     @media (max-width: 900px) {
-      nav { padding: 1.2rem 1.5rem; }
+      nav { padding: 1rem 1.5rem; }
       .container { padding: 0 1.5rem; }
 
       .hero {
@@ -747,32 +647,21 @@
         min-height: auto;
       }
       .hero-image-col {
-        height: 60vh;
-        min-height: 400px;
-      }
-      .hero-image-overlay {
-        background: linear-gradient(to bottom, transparent 70%, var(--offwhite) 100%);
+        height: 70vw;
+        min-height: 320px;
+        max-height: 520px;
       }
       .hero-text-col {
-        padding: 2.5rem 1.5rem 3.5rem;
+        padding: 2.5rem 1.5rem 3rem;
+        justify-content: flex-start;
       }
-      .hero-followers {
-        gap: 1.5rem;
-      }
+      .hero-followers { gap: 1.5rem; }
 
       .profile-grid,
-      .genres-layout {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
+      .genres-layout { grid-template-columns: 1fr; gap: 2.5rem; }
 
-      .sns-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .cases-grid {
-        grid-template-columns: 1fr;
-      }
+      .sns-grid { grid-template-columns: 1fr; }
+      .cases-grid { grid-template-columns: 1fr; }
 
       section { padding: 4rem 0; }
     }
@@ -780,31 +669,23 @@
 </head>
 <body>
 
-  <!-- ── Navigation ── -->
+  <!-- Nav -->
   <nav id="main-nav">
-    <div class="nav-logo" id="nav-agency">GOOD VIBES AGENCY</div>
+    <div class="nav-logo">GOOD VIBES AGENCY</div>
     <div class="nav-right">Media Kit 2025</div>
   </nav>
 
-  <!-- ── Hero ── -->
+  <!-- Hero -->
   <section class="hero" id="hero">
     <div class="hero-image-col">
-      <img
-        class="hero-img"
-        id="hero-photo"
-        src=""
-        alt=""
-      >
-      <div class="hero-image-overlay"></div>
+      <img class="hero-img" id="hero-photo" src="" alt="">
     </div>
-
     <div class="hero-text-col">
-      <p class="hero-label" id="hero-label">Talent — Beauty Creator</p>
+      <p class="hero-label">Talent — Beauty Creator</p>
       <h1 class="hero-name-en" id="hero-name-en"></h1>
       <p class="hero-name-ja" id="hero-name-ja"></p>
       <p class="hero-handle" id="hero-handle"></p>
       <p class="hero-tagline" id="hero-tagline"></p>
-
       <div class="hero-followers">
         <div class="hero-stat">
           <div class="hero-stat-num" id="hero-instagram-followers"></div>
@@ -822,13 +703,12 @@
     </div>
   </section>
 
-  <!-- ── Profile ── -->
+  <!-- Profile -->
   <section class="profile-section" id="profile">
     <div class="container">
       <p class="section-label reveal">Profile</p>
       <h2 class="section-title reveal" id="profile-title"></h2>
       <div class="divider reveal"></div>
-
       <div class="profile-grid">
         <div>
           <p class="profile-bio reveal" id="profile-bio"></p>
@@ -839,15 +719,13 @@
     </div>
   </section>
 
-  <!-- ── SNS Stats ── -->
+  <!-- SNS Stats -->
   <section class="sns-section" id="sns">
     <div class="container">
       <p class="section-label reveal">Social Media</p>
-      <h2 class="section-title reveal">Numbers that<br><em>speak for themselves.</em></h2>
+      <h2 class="section-title reveal">Numbers that speak<br>for themselves.</h2>
       <div class="divider reveal" style="background:#2a2a2a;"></div>
-
       <div class="sns-grid reveal" id="sns-grid"></div>
-
       <div class="sns-total reveal">
         <p class="sns-total-label">Total Followers</p>
         <p class="sns-total-num" id="sns-total-num"></p>
@@ -855,7 +733,7 @@
     </div>
   </section>
 
-  <!-- ── Genres ── -->
+  <!-- Genres -->
   <section class="genres-section" id="genres">
     <div class="container">
       <div class="genres-layout">
@@ -863,9 +741,8 @@
           <p class="section-label reveal">Expertise</p>
           <h2 class="section-title reveal">得意<br>ジャンル</h2>
           <div class="divider reveal"></div>
-          <p style="font-family:var(--ja);font-size:0.85rem;line-height:2;color:var(--mid);font-weight:300;" class="reveal">
-            コスメ・ビューティー領域を中心に<br>
-            多様なジャンルへの親和性を持つ。
+          <p style="font-family:var(--ja);font-size:0.88rem;line-height:2;color:var(--mid);font-weight:300;" class="reveal">
+            コスメ・ビューティー領域を中心に<br>多様なジャンルへの親和性を持つ。
           </p>
         </div>
         <div class="genre-tags reveal" id="genre-tags"></div>
@@ -873,7 +750,7 @@
     </div>
   </section>
 
-  <!-- ── Cases ── -->
+  <!-- Cases -->
   <section class="cases-section" id="cases">
     <div class="container">
       <p class="section-label reveal">Work</p>
@@ -883,13 +760,12 @@
     </div>
   </section>
 
-  <!-- ── Pricing ── -->
+  <!-- Pricing -->
   <section class="pricing-section" id="pricing">
     <div class="container">
       <p class="section-label reveal">Pricing</p>
       <h2 class="section-title reveal">料金目安</h2>
       <div class="divider reveal"></div>
-
       <table class="pricing-table reveal">
         <thead>
           <tr>
@@ -900,7 +776,6 @@
         </thead>
         <tbody id="pricing-tbody"></tbody>
       </table>
-
       <p class="pricing-note reveal">
         ※ 記載の金額はあくまで目安です。案件内容・期間・プラットフォームの組み合わせによって変動します。<br>
         ※ 詳細はGOOD VIBES AGENCYまでお問い合わせください。
@@ -908,7 +783,7 @@
     </div>
   </section>
 
-  <!-- ── CTA ── -->
+  <!-- CTA -->
   <section class="cta-section" id="contact">
     <div class="container">
       <p class="cta-label reveal" id="cta-agency"></p>
@@ -921,39 +796,35 @@
     </div>
   </section>
 
-  <!-- ── Footer ── -->
+  <!-- Footer -->
   <footer>
     <div class="footer-agency" id="footer-agency"></div>
     <div class="footer-confidential">Confidential — For Business Use Only</div>
   </footer>
 
-  <!-- ── JS: Populate data & Interactions ── -->
   <script>
   (function() {
-
-    // ── Populate hero
     document.getElementById('hero-photo').src = TALENT.photo;
     document.getElementById('hero-photo').alt = TALENT.nameJa + ' — MOMOKA';
     document.getElementById('hero-name-en').textContent = TALENT.name;
     document.getElementById('hero-name-ja').textContent = TALENT.nameJa;
     document.getElementById('hero-handle').textContent = TALENT.sns.instagram.handle + '  ·  ' + TALENT.sns.tiktok.handle;
-    document.getElementById('hero-tagline').textContent = TALENT.tagline;
+    document.getElementById('hero-tagline').textContent = TALENT.taglineJa;
     document.getElementById('hero-instagram-followers').textContent = TALENT.sns.instagram.followers;
     document.getElementById('hero-tiktok-followers').textContent = TALENT.sns.tiktok.followers;
     document.getElementById('hero-total').textContent = TALENT.totalFollowers;
 
-    // ── Populate profile
-    document.getElementById('profile-title').innerHTML = 'About<br>' + TALENT.nameJa;
+    document.getElementById('profile-title').innerHTML = 'About ' + TALENT.nameJa;
     document.getElementById('profile-bio').textContent = TALENT.bio;
 
     const factsData = [
-      { label: 'Birthday', value: TALENT.birthday + '  （' + TALENT.age + '歳）' },
-      { label: 'Height',   value: TALENT.height },
-      { label: 'From',     value: TALENT.birthplace },
-      { label: 'Language', value: '日本語 / English' },
-      { label: 'Instagram',value: TALENT.sns.instagram.handle },
-      { label: 'TikTok',   value: TALENT.sns.tiktok.handle },
-      { label: 'X / Twitter', value: TALENT.sns.x.handle },
+      { label: 'Birthday',   value: TALENT.birthday + '（' + TALENT.age + '歳）' },
+      { label: 'Height',     value: TALENT.height },
+      { label: 'From',       value: TALENT.birthplace },
+      { label: 'Language',   value: '日本語 / English' },
+      { label: 'Instagram',  value: TALENT.sns.instagram.handle },
+      { label: 'TikTok',     value: TALENT.sns.tiktok.handle },
+      { label: 'X / Twitter',value: TALENT.sns.x.handle },
     ];
     const factsEl = document.getElementById('profile-facts');
     factsData.forEach(f => {
@@ -971,7 +842,6 @@
       strengthsList.appendChild(tag);
     });
 
-    // ── Populate SNS grid
     const snsGrid = document.getElementById('sns-grid');
     const snsData = [
       {
@@ -993,29 +863,23 @@
         ]
       },
     ];
-
     snsData.forEach(platform => {
       const card = document.createElement('div');
       card.className = 'sns-card';
-      const metricsHTML = platform.metrics.map(m => `
-        <div class="metric">
-          <div class="metric-num">${m.num}</div>
-          <div class="metric-label">${m.label}</div>
-        </div>
-      `).join('');
+      const metricsHTML = platform.metrics.map(m =>
+        `<div class="metric"><div class="metric-num">${m.num}</div><div class="metric-label">${m.label}</div></div>`
+      ).join('');
       card.innerHTML = `
         <div class="sns-platform">${platform.platform}</div>
         <div class="sns-handle">${platform.handle}</div>
         <div class="sns-metrics">${metricsHTML}</div>
       `;
       card.addEventListener('click', () => window.open(platform.url, '_blank'));
-      card.style.cursor = 'pointer';
       snsGrid.appendChild(card);
     });
 
     document.getElementById('sns-total-num').textContent = TALENT.totalFollowers;
 
-    // ── Populate genres
     const genreTags = document.getElementById('genre-tags');
     TALENT.genres.forEach((g, i) => {
       const tag = document.createElement('div');
@@ -1024,7 +888,6 @@
       genreTags.appendChild(tag);
     });
 
-    // ── Populate cases
     const casesGrid = document.getElementById('cases-grid');
     TALENT.cases.forEach(c => {
       const card = document.createElement('div');
@@ -1038,7 +901,6 @@
       casesGrid.appendChild(card);
     });
 
-    // ── Populate pricing
     const tbody = document.getElementById('pricing-tbody');
     TALENT.pricing.forEach(p => {
       const tr = document.createElement('tr');
@@ -1046,31 +908,24 @@
       tbody.appendChild(tr);
     });
 
-    // ── Populate CTA & footer
     document.getElementById('cta-agency').textContent = TALENT.contact.agency;
     document.getElementById('cta-talent-name').textContent = 'Inquiries about ' + TALENT.nameJa + ' / ' + TALENT.name;
     document.getElementById('cta-email').href = 'mailto:' + TALENT.contact.email;
     document.getElementById('cta-web').href = TALENT.contact.website;
     document.getElementById('footer-agency').textContent = '© ' + new Date().getFullYear() + ' ' + TALENT.contact.agency;
 
-    // ── Nav scroll
     const nav = document.getElementById('main-nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 20);
     });
 
-    // ── Scroll reveal
     const revealEls = document.querySelectorAll('.reveal');
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          io.unobserve(e.target);
-        }
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
       });
     }, { threshold: 0.1 });
     revealEls.forEach(el => io.observe(el));
-
   })();
   </script>
 
