@@ -42,6 +42,14 @@
       },
     },
     totalFollowers: "515,000+",
+    recentPosts: [
+      { type: "VIDEO",    thumb: "https://scontent-nrt1-1.cdninstagram.com/v/t51.71878-15/655024197_2561205080942201_6405437008175298784_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=103&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=1pRfFq6RYawQ7kNvwF079cv&_nc_oc=AdoS8Nv9F_1zZr4a3pZkesWNGFf_28eXanrmufbEwDh8SmK0gDdhVYpRnK3jnIDT1kUwRhnnumG8rdvNe9u25JbH&_nc_zt=23&_nc_ht=scontent-nrt1-1.cdninstagram.com&edm=AL-3X8kEAAAA&_nc_gid=SEl6kjynsBtjloQoOk1c1Q&oh=00_AfyIdL1qZGflmVc_D7bxPLXOSnixes3ltgRqNVTJqBkncw&oe=69C9A7A4", likes: 1024, comments: 10, url: "https://www.instagram.com/reel/DWI-SBdgJ0O/" },
+      { type: "VIDEO",    thumb: "https://scontent-nrt6-1.cdninstagram.com/v/t51.71878-15/652858212_1595938394948743_5825110511167250599_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=111&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=fDWElhSQjB8Q7kNvwHIOR5m&_nc_oc=AdpvPH2KLNzsVS9_6Op6ZKbcwtlxKP-UkHI5ZQyu-opYz0gX5V6b7Fs8ivVwoHODg-BWvEYjA6Ser1xKZkiJQ2hi&_nc_zt=23&_nc_ht=scontent-nrt6-1.cdninstagram.com&edm=AL-3X8kEAAAA&_nc_gid=SEl6kjynsBtjloQoOk1c1Q&oh=00_Afz4HztOJJu9oXH-qaRe1yz3yRgJETJBnwwk4iEB9B7V8g&oe=69C9961D", likes: 0, comments: 9,  url: "https://www.instagram.com/reel/DWGjg42lI2y/" },
+      { type: "CAROUSEL", thumb: null, likes: 0, comments: 5, url: "https://www.instagram.com/p/DWD4p72gKlA/" },
+      { type: "CAROUSEL", thumb: "https://scontent-nrt6-1.cdninstagram.com/v/t51.82787-15/653983085_18354911380225979_808501692254474110_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=107&ccb=7-5&_nc_sid=18de74&_nc_ohc=jNPV4ngVSH4Q7kNvwHu1AAI&_nc_zt=23&_nc_ht=scontent-nrt6-1.cdninstagram.com&edm=AL-3X8kEAAAA&oh=00_AfyRkYaLCfA1L3tba22T_ySqQSN-t_4yb1mFcw9trKAeYg&oe=69C9A052", likes: 0, comments: 4, url: "https://www.instagram.com/p/DWBLyV1gFDN/" },
+      { type: "CAROUSEL", thumb: "https://scontent-nrt1-1.cdninstagram.com/v/t51.82787-15/652561233_18354553603225979_5033050262611874599_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=108&ccb=7-5&_nc_sid=18de74&_nc_ohc=Y9pJlUBT_kcQ7kNvwGbI4uN&_nc_zt=23&_nc_ht=scontent-nrt1-1.cdninstagram.com&edm=AL-3X8kEAAAA&oh=00_AfyLhiBetyHulsNGsvzDwAAb44jAAextFBbvDDyEVzSZIA&oe=69C993FF", likes: 0, comments: 4, url: "https://www.instagram.com/p/DV8FQxtAHov/" },
+      { type: "VIDEO",    thumb: "https://scontent-nrt6-1.cdninstagram.com/v/t51.82787-15/654046191_18355135486225979_4032090512254637373_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=107&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=I1vZN_E928UQ7kNvwH5Nj7u&_nc_zt=23&_nc_ht=scontent-nrt6-1.cdninstagram.com&edm=AL-3X8kEAAAA&oh=00_AfyLjDSbrr3KfILuAj-Xm4Bz01UgV1RxQeCB282qQgphGw&oe=69C99412", likes: 0, comments: 13, url: "https://www.instagram.com/reel/DVx-aGDjOcS/" },
+    ],
     genres: ["コスメ", "メイク", "ファッション", "ライフスタイル", "ビューティー"],
     strengths: [
       { icon: "◆", label: "泣き顔メイク" },
@@ -642,6 +650,72 @@
       color: var(--light);
     }
 
+    /* ── Recent Posts ── */
+    .posts-section { background: var(--white); }
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+    .post-card {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: var(--bg2);
+      cursor: pointer;
+    }
+    .post-card:hover .post-overlay { opacity: 1; }
+    .post-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .post-card:hover .post-thumb { transform: scale(1.04); }
+    .post-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .post-stat {
+      color: #fff;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+    .post-type-badge {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: rgba(255,255,255,0.9);
+      color: #111;
+      font-size: 0.5rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.4rem;
+    }
+    .post-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--light);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    @media (max-width: 900px) {
+      .posts-grid { grid-template-columns: repeat(3, 1fr); gap: 0.4rem; }
+    }
+
     /* ── Reveal ── */
     .reveal {
       opacity: 1;
@@ -751,6 +825,16 @@
         <p class="sns-total-label">Total Followers</p>
         <p class="sns-total-num" id="sns-total-num"></p>
       </div>
+    </div>
+  </section>
+
+  <!-- Recent Posts -->
+  <section class="posts-section" id="posts">
+    <div class="container">
+      <p class="section-label">Recent Posts</p>
+      <h2 class="section-title">直近の投稿</h2>
+      <div class="divider"></div>
+      <div class="posts-grid" id="posts-grid"></div>
     </div>
   </section>
 
@@ -908,6 +992,24 @@
     });
 
     // cases section removed
+
+    // Recent Posts
+    const postsGrid = document.getElementById('posts-grid');
+    TALENT.recentPosts.forEach(p => {
+      const a = document.createElement('a');
+      a.href = p.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.className = 'post-card';
+      const badge = p.type === 'VIDEO' ? 'REEL' : 'POST';
+      const statsHTML = `<span class="post-stat">♥ ${p.likes.toLocaleString()}</span><span class="post-stat">💬 ${p.comments}</span>`;
+      if (p.thumb) {
+        a.innerHTML = `<img class="post-thumb" src="${p.thumb}" alt="" loading="lazy"><div class="post-overlay">${statsHTML}</div><span class="post-type-badge">${badge}</span>`;
+      } else {
+        a.innerHTML = `<div class="post-placeholder">${badge}</div><div class="post-overlay">${statsHTML}</div>`;
+      }
+      postsGrid.appendChild(a);
+    });
 
     const tbody = document.getElementById('pricing-tbody');
     TALENT.pricing.forEach(p => {
