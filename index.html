@@ -41,7 +41,7 @@
         url:       "https://x.com/momoka_O4O5",
       },
     },
-    totalFollowers: "350,000+",
+    totalFollowers: "515,000+",
     genres: ["コスメ", "メイク", "ファッション", "ライフスタイル", "ビューティー"],
     strengths: [
       { icon: "◆", label: "泣き顔メイク" },
@@ -151,7 +151,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top center;
+      object-position: center 20%;
     }
 
     .hero-text-col {
@@ -328,40 +328,40 @@
     }
 
     /* ── SNS Stats ── */
-    .sns-section { background: var(--black); }
-    .sns-section .section-label { color: #888; }
-    .sns-section .section-title { color: var(--white); font-family: var(--sans); font-weight: 300; letter-spacing: 0; }
+    .sns-section { background: var(--white); }
+    .sns-section .section-label { color: var(--light); }
+    .sns-section .section-title { color: var(--dark); font-family: var(--sans); font-weight: 300; letter-spacing: 0; }
 
     .sns-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1px;
-      background: #2a2a2a;
-      border: 1px solid #2a2a2a;
+      background: var(--border);
+      border: 1px solid var(--border);
       margin-bottom: 1px;
     }
 
     .sns-card {
-      background: #1a1a1a;
+      background: var(--white);
       padding: 2.5rem 3rem;
       cursor: pointer;
       transition: background 0.2s;
     }
-    .sns-card:hover { background: #222; }
+    .sns-card:hover { background: var(--bg); }
 
     .sns-platform {
       font-size: 0.6rem;
       font-weight: 500;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: #666;
+      color: var(--light);
       margin-bottom: 1.25rem;
     }
 
     .sns-handle {
       font-size: 1rem;
-      font-weight: 300;
-      color: #aaa;
+      font-weight: 400;
+      color: var(--dark);
       margin-bottom: 1.75rem;
     }
 
@@ -370,7 +370,7 @@
     .metric-num {
       font-size: clamp(1.8rem, 3.5vw, 2.6rem);
       font-weight: 300;
-      color: var(--white);
+      color: var(--black);
       line-height: 1;
       letter-spacing: -0.02em;
     }
@@ -379,12 +379,12 @@
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: #555;
+      color: var(--light);
       margin-top: 0.4rem;
     }
 
     .sns-total {
-      background: #1a1a1a;
+      background: var(--bg2);
       text-align: center;
       padding: 3rem;
     }
@@ -393,13 +393,13 @@
       font-weight: 500;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: #555;
+      color: var(--light);
       margin-bottom: 0.75rem;
     }
     .sns-total-num {
       font-size: clamp(2.5rem, 5vw, 4rem);
       font-weight: 300;
-      color: var(--white);
+      color: var(--black);
       letter-spacing: -0.02em;
     }
 
@@ -548,7 +548,7 @@
       font-weight: 500;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: #555;
+      color: var(--mid);
       margin-bottom: 1.75rem;
     }
 
@@ -564,7 +564,7 @@
     .cta-sub {
       font-size: 0.72rem;
       letter-spacing: 0.12em;
-      color: #555;
+      color: var(--mid);
       margin-bottom: 3rem;
     }
 
@@ -724,7 +724,7 @@
     <div class="container">
       <p class="section-label reveal">Social Media</p>
       <h2 class="section-title reveal">Numbers that speak<br>for themselves.</h2>
-      <div class="divider reveal" style="background:#2a2a2a;"></div>
+      <div class="divider reveal" style="background:var(--border);"></div>
       <div class="sns-grid reveal" id="sns-grid"></div>
       <div class="sns-total reveal">
         <p class="sns-total-label">Total Followers</p>
