@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MOMOKA — GVA MEDIA KIT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Barlow+Condensed:wght@700;900&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* ─────────────────────────────
+       CSS VARIABLES (GVA BRAND)
+    ───────────────────────────── */
+    :root {
+      --black:   #000000;
+      --dark:    #0d0d14;
+      --dark2:   #1f1f29;
+      --white:   #ffffff;
+      --green:   #00c864;
+      --lime:    #c7ff4f;
+      --pink:    #ff23b5;
+      --grey:    #3a3a4a;
+      --grey2:   #7a7a8a;
+      --radius:  4px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Noto Sans JP', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* FUTURA-STYLE via Montserrat 900 */
+    .futura {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .condensed {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* ─────────────────────────────
+       TOP BAR
+    ───────────────────────────── */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 32px;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(199,255,79,0.15);
+    }
+    .topbar-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lime);
+    }
+    .topbar-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: var(--grey2);
+      border: 1px solid var(--grey);
+      padding: 4px 10px;
+      border-radius: 2px;
+    }
+
+    /* ─────────────────────────────
+       HERO
+    ───────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 32px 80px;
+    }
+
+    /* Decorative background grid */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(199,255,79,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(199,255,79,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    /* Giant "MEDIA KIT" background text */
+    .hero-bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(60px, 15vw, 200px);
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: rgba(255,255,255,0.02);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Lime accent bar left */
+    .hero-accent {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, transparent, var(--lime), var(--pink), transparent);
+      opacity: 0.7;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      color: var(--lime);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--lime);
+    }
+
+    .hero-main {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-avatar-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+    .hero-avatar {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      border: 2px solid transparent;
+      background: linear-gradient(var(--dark), var(--dark)) padding-box,
+                  linear-gradient(135deg, var(--lime), var(--pink)) border-box;
+    }
+    .hero-avatar-ring {
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1px solid rgba(199,255,79,0.2);
+      pointer-events: none;
+    }
+    .handle-badge {
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--lime);
+      color: var(--black);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 4px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .hero-info {}
+    .hero-name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(52px, 8vw, 96px);
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 0.9;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .hero-name span {
+      display: block;
+      color: var(--lime);
+      font-size: 0.65em;
+      letter-spacing: 0.05em;
+    }
+
+    .hero-bio {
+      color: var(--grey2);
+      font-size: 15px;
+      margin-bottom: 40px;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    /* ─── KPI row ─── */
+    .kpi-row {
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .kpi-item {
+      padding: 20px 32px 20px 0;
+      margin-right: 32px;
+      border-right: 1px solid var(--grey);
+    }
+    .kpi-item:last-child {
+      border-right: none;
+    }
+    .kpi-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+    .kpi-num.accent { color: var(--lime); }
+    .kpi-label {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      color: var(--grey2);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ─────────────────────────────
+       SECTION COMMON
+    ───────────────────────────── */
+    section {
+      padding: 100px 32px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      color: var(--lime);
+      text-transform: uppercase;
+      margin-bottom: 48px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--grey), transparent);
+    }
+    .section-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(32px, 5vw, 56px);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 0.95;
+      margin-bottom: 40px;
+    }
+
+    /* ─────────────────────────────
+       PROFILE SECTION
+    ───────────────────────────── */
+    #profile { background: var(--dark); }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+      background: var(--grey);
+    }
+    .profile-card {
+      background: var(--dark2);
+      padding: 40px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--lime), transparent);
+    }
+    .profile-card-label {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: var(--grey2);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .profile-card-content {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--white);
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .tag {
+      background: rgba(199,255,79,0.1);
+      border: 1px solid rgba(199,255,79,0.3);
+      color: var(--lime);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 2px;
+    }
+    .tag.pink {
+      background: rgba(255,35,181,0.1);
+      border-color: rgba(255,35,181,0.3);
+      color: var(--pink);
+    }
+
+    /* ─────────────────────────────
+       STATS SECTION
+    ───────────────────────────── */
+    #stats { background: var(--black); }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--grey);
+      margin-top: 48px;
+    }
+    .stat-block {
+      background: var(--dark);
+      padding: 48px 32px;
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+    .stat-block:hover {
+      background: var(--dark2);
+    }
+    .stat-block::after {
+      content: attr(data-index);
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 11px;
+      color: rgba(255,255,255,0.08);
+      letter-spacing: 0.1em;
+    }
+    .stat-value {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(44px, 5vw, 72px);
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .stat-value.lime { color: var(--lime); }
+    .stat-value.pink { color: var(--pink); }
+    .stat-value.green { color: var(--green); }
+    .stat-desc {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      color: var(--grey2);
+      text-transform: uppercase;
+    }
+
+    /* ─────────────────────────────
+       CASE STUDIES / 案件実績
+    ───────────────────────────── */
+    #cases { background: var(--dark); }
+
+    .cases-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .case-item {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      align-items: center;
+      gap: 32px;
+      background: var(--dark2);
+      padding: 32px 40px;
+      border-left: 3px solid transparent;
+      transition: border-color 0.3s, background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .case-item:hover {
+      border-left-color: var(--lime);
+      background: rgba(199,255,79,0.03);
+    }
+    .case-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      color: rgba(255,255,255,0.06);
+      line-height: 1;
+    }
+    .case-brand {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .case-detail {
+      font-size: 13px;
+      color: var(--grey2);
+    }
+    .case-type {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--lime);
+      border: 1px solid rgba(199,255,79,0.4);
+      padding: 6px 14px;
+      white-space: nowrap;
+    }
+
+    /* ─────────────────────────────
+       PRICING
+    ───────────────────────────── */
+    #pricing { background: var(--black); }
+
+    .pricing-note {
+      font-size: 12px;
+      color: var(--grey2);
+      margin-bottom: 48px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--grey);
+    }
+    .price-card {
+      background: var(--dark);
+      padding: 48px 40px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+    .price-card:hover {
+      background: var(--dark2);
+    }
+    .price-card.featured {
+      background: var(--dark2);
+    }
+    .price-card.featured::before {
+      content: 'POPULAR';
+      position: absolute;
+      top: 20px;
+      right: -28px;
+      background: var(--lime);
+      color: var(--black);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 8px;
+      letter-spacing: 0.2em;
+      padding: 4px 40px;
+      transform: rotate(45deg);
+    }
+    .price-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+    .price-type {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: var(--grey2);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .price-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 28px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      margin-bottom: 32px;
+    }
+    .price-range {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 48px;
+      color: var(--lime);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .price-unit {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: var(--grey2);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    .price-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .price-features li {
+      font-size: 13px;
+      color: var(--grey2);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .price-features li::before {
+      content: '→';
+      color: var(--lime);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    /* ─────────────────────────────
+       CTA
+    ───────────────────────────── */
+    #cta {
+      background: var(--dark);
+      text-align: center;
+      padding: 120px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    #cta::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(199,255,79,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-inner { position: relative; z-index: 2; }
+    .cta-title {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: clamp(40px, 6vw, 80px);
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 0.95;
+      margin-bottom: 24px;
+    }
+    .cta-title em {
+      display: block;
+      font-style: normal;
+      color: var(--lime);
+    }
+    .cta-sub {
+      color: var(--grey2);
+      font-size: 15px;
+      margin-bottom: 48px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--lime);
+      color: var(--black);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 20px 48px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .cta-btn:hover {
+      background: var(--white);
+      transform: translateY(-2px);
+    }
+    .cta-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ─────────────────────────────
+       FOOTER
+    ───────────────────────────── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid var(--grey);
+      padding: 40px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .footer-logo span { color: var(--lime); }
+    .footer-conf {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 9px;
+      letter-spacing: 0.35em;
+      color: var(--grey2);
+      text-transform: uppercase;
+      border: 1px solid var(--grey);
+      padding: 5px 12px;
+    }
+    .footer-copy {
+      font-size: 11px;
+      color: var(--grey2);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─────────────────────────────
+       ANIMATIONS
+    ───────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse-border {
+      0%, 100% { opacity: 0.4; }
+      50%       { opacity: 1; }
+    }
+
+    .hero-eyebrow { animation: fadeUp 0.6s ease both; }
+    .hero-avatar-wrap { animation: fadeUp 0.7s 0.1s ease both; }
+    .hero-name    { animation: fadeUp 0.7s 0.15s ease both; }
+    .hero-bio     { animation: fadeUp 0.7s 0.2s ease both; }
+    .kpi-row      { animation: fadeUp 0.7s 0.25s ease both; }
+
+    .hero-avatar-ring {
+      animation: pulse-border 3s ease-in-out infinite;
+    }
+
+    /* Divider line between hero sections */
+    .hero-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--grey), transparent);
+      margin: 80px 0 0;
+      opacity: 0.5;
+    }
+
+    /* ─────────────────────────────
+       RESPONSIVE
+    ───────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-main {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .hero-avatar { width: 120px; height: 120px; }
+      .profile-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .case-item { grid-template-columns: 48px 1fr; }
+      .case-type { display: none; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 72px 20px; }
+      .hero { padding: 100px 20px 60px; }
+      .topbar { padding: 14px 20px; }
+      footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; }
+      .kpi-row { gap: 0; }
+      .kpi-item { padding: 16px 24px 16px 0; margin-right: 24px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ──────────────────────── TOP BAR ──────────────────────── -->
+<header class="topbar">
+  <div class="topbar-logo">GVA — GOOD VIBES AGENCY</div>
+  <div class="topbar-tag">MEDIA KIT 2025</div>
+</header>
+
+<!-- ──────────────────────── HERO ──────────────────────── -->
+<section class="hero" id="hero">
+  <div class="hero-accent"></div>
+  <div class="hero-bg-text">MOMOKA</div>
+
+  <div class="hero-inner">
+    <div class="hero-eyebrow">GVA TALENT · MEDIA KIT</div>
+
+    <div class="hero-main">
+      <div class="hero-avatar-wrap">
+        <img
+          class="hero-avatar"
+          src="https://scontent-nrt6-1.xx.fbcdn.net/v/t51.82787-15/535376957_18325763794225979_7017405374389164756_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=7d201b&_nc_ohc=Yrq24rpT4nMQ7kNvwHcuznU&_nc_oc=AdrzGfMA8CZ6JfTzLhVOJwn0wrwArJj-ws0KGXuVWL5Wj6ReGJT4Tjn91CqaMkh22-4ppnYfANnpwEWhw8T5aCwC&_nc_zt=23&_nc_ht=scontent-nrt6-1.xx&oh=00_AfxRZk9NVaaWFQzhgQYuwGkPKxWN0XMz-Ion99o0GnpK7A&oe=69C95021"
+          alt="MOMOKA"
+          onerror="this.src='https://ui-avatars.com/api/?name=MK&background=1f1f29&color=c7ff4f&size=180&font-size=0.4&bold=true'"
+        >
+        <div class="hero-avatar-ring"></div>
+        <div class="handle-badge">@moo_mo_k</div>
+      </div>
+
+      <div class="hero-info">
+        <h1 class="hero-name">
+          Momoka
+          <span>桃佳</span>
+        </h1>
+        <p class="hero-bio">tokyo 🍡🇯🇵 &nbsp;/&nbsp; @crumbkundesu</p>
+
+        <div class="kpi-row">
+          <div class="kpi-item">
+            <div class="kpi-num">215<span style="color:var(--lime)">K</span></div>
+            <div class="kpi-label">Followers</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-num accent">0.28<span style="font-size:0.6em">%</span></div>
+            <div class="kpi-label">Eng Rate</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-num">586</div>
+            <div class="kpi-label">Avg Likes</div>
+          </div>
+          <div class="kpi-item">
+            <div class="kpi-num">317</div>
+            <div class="kpi-label">Posts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-divider"></div>
+  </div>
+</section>
+
+<!-- ──────────────────────── PROFILE ──────────────────────── -->
+<section id="profile">
+  <div class="container">
+    <div class="section-label">02 — PROFILE</div>
+    <h2 class="section-title">CREATOR<br>PROFILE</h2>
+
+    <div class="profile-grid">
+      <div class="profile-card">
+        <div class="profile-card-label">Genre / 得意ジャンル</div>
+        <div class="profile-card-content">
+          <div class="tag-list">
+            <span class="tag">コスメ</span>
+            <span class="tag">ファッション</span>
+            <span class="tag">ライフスタイル</span>
+            <span class="tag">グルメ</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-card">
+        <div class="profile-card-label">Target Audience / 対象層</div>
+        <div class="profile-card-content">
+          <div class="tag-list">
+            <span class="tag pink">🇯🇵 日本</span>
+            <span class="tag pink">20代女性</span>
+            <span class="tag pink">30代女性</span>
+          </div>
+          <p style="margin-top:16px;font-size:13px;color:var(--grey2);">
+            ライフスタイル・美容に関心が高い都市部在住の20〜30代女性がメイン層
+          </p>
+        </div>
+      </div>
+
+      <div class="profile-card">
+        <div class="profile-card-label">Platform / 活動プラットフォーム</div>
+        <div class="profile-card-content">
+          <div class="tag-list">
+            <span class="tag">Instagram</span>
+          </div>
+          <p style="margin-top:16px;font-size:13px;color:var(--grey2);">
+            Instagramをメインに活動。<br>フィード・リール・ストーリーズ対応。
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────────────── STATS ──────────────────────── -->
+<section id="stats">
+  <div class="container">
+    <div class="section-label">03 — DATA</div>
+    <h2 class="section-title">PERFORMANCE<br>METRICS</h2>
+
+    <div class="stats-grid">
+      <div class="stat-block" data-index="01">
+        <div class="stat-value lime">215,610</div>
+        <div class="stat-desc">Total Followers</div>
+      </div>
+      <div class="stat-block" data-index="02">
+        <div class="stat-value pink">0.28%</div>
+        <div class="stat-desc">Engagement Rate</div>
+      </div>
+      <div class="stat-block" data-index="03">
+        <div class="stat-value green">586</div>
+        <div class="stat-desc">Average Likes</div>
+      </div>
+      <div class="stat-block" data-index="04">
+        <div class="stat-value">11</div>
+        <div class="stat-desc">Average Comments</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────────────── CASES ──────────────────────── -->
+<section id="cases">
+  <div class="container">
+    <div class="section-label">04 — WORK</div>
+    <h2 class="section-title">PAST<br>COLLABORATIONS</h2>
+
+    <div class="cases-list">
+      <div class="case-item">
+        <div class="case-num">01</div>
+        <div>
+          <div class="case-brand">Intimissimi × Calzedonia</div>
+          <div class="case-detail">ランジェリーブランドのSNS PR施策。フィード投稿でブランドの世界観を表現。</div>
+        </div>
+        <div class="case-type">SNS PR</div>
+      </div>
+      <div class="case-item">
+        <div class="case-num">02</div>
+        <div>
+          <div class="case-brand">ナンバーズイン</div>
+          <div class="case-detail">スキンケアブランドのギフティング案件。自然なライフスタイル発信で商品を紹介。</div>
+        </div>
+        <div class="case-type">Gifting</div>
+      </div>
+      <div class="case-item">
+        <div class="case-num">03</div>
+        <div>
+          <div class="case-brand">Picchi</div>
+          <div class="case-detail">写真編集AIアプリのプロモーション。クリエイティブな投稿でアプリの活用シーンを紹介。</div>
+        </div>
+        <div class="case-type">App PR</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────────────── PRICING ──────────────────────── -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-label">05 — PRICING</div>
+    <h2 class="section-title">RATE<br>CARD</h2>
+    <p class="pricing-note">※ 想定ギャランティ帯（税別・目安） — 詳細はGVAまでお問い合わせください</p>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-icon">📸</div>
+        <div class="price-type">Format 01</div>
+        <div class="price-name">Feed Post<br>フィード投稿</div>
+        <div class="price-range">¥8〜15<span style="font-size:0.5em">万</span></div>
+        <div class="price-unit">Per Post / 1投稿あたり</div>
+        <ul class="price-features">
+          <li>静止画 or カルーセル</li>
+          <li>キャプション・タグ設定込み</li>
+          <li>投稿前確認あり</li>
+          <li>データ提供可（要相談）</li>
+        </ul>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-icon">🎬</div>
+        <div class="price-type">Format 02</div>
+        <div class="price-name">Reels<br>リール</div>
+        <div class="price-range">¥12〜20<span style="font-size:0.5em">万</span></div>
+        <div class="price-unit">Per Reel / 1本あたり</div>
+        <ul class="price-features">
+          <li>15〜60秒ショートムービー</li>
+          <li>BGM・テロップ対応</li>
+          <li>撮影・編集込み</li>
+          <li>高リーチが期待できる形式</li>
+        </ul>
+      </div>
+
+      <div class="price-card">
+        <div class="price-icon">⏱</div>
+        <div class="price-type">Format 03</div>
+        <div class="price-name">Stories<br>ストーリーズ</div>
+        <div class="price-range">¥3〜6<span style="font-size:0.5em">万</span></div>
+        <div class="price-unit">Per Set / 1セットあたり</div>
+        <ul class="price-features">
+          <li>3〜5枚のストーリーズ</li>
+          <li>スワイプアップリンク設定</li>
+          <li>24時間表示</li>
+          <li>ハイライト追加可能</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────────────── CTA ──────────────────────── -->
+<section id="cta">
+  <div class="cta-inner container">
+    <h2 class="cta-title">
+      READY TO<br>
+      <em>COLLABORATE?</em>
+    </h2>
+    <p class="cta-sub">桃佳とのコラボレーションに関するお問い合わせは<br>GOOD VIBES AGENCYまでお気軽にどうぞ。</p>
+    <a href="mailto:info@goodvibesagency.jp" class="cta-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+      CONTACT GVA
+    </a>
+  </div>
+</section>
+
+<!-- ──────────────────────── FOOTER ──────────────────────── -->
+<footer>
+  <div class="footer-logo">
+    <span>GOOD VIBES</span> AGENCY
+  </div>
+  <div class="footer-conf">⬛ CONFIDENTIAL</div>
+  <div class="footer-copy">© 2025 GOOD VIBES AGENCY. ALL RIGHTS RESERVED.</div>
+</footer>
+
+<script>
+  // ─────────────────────────────────────────
+  // TALENT DATA — replace these variables to
+  // generate a media kit for a different talent
+  // ─────────────────────────────────────────
+  const TALENT = {
+    nameJP:       '桃佳',
+    nameEN:       'MOMOKA',
+    handle:       '@moo_mo_k',
+    bio:          'tokyo 🍡🇯🇵 / @crumbkundesu',
+    avatar:       'https://scontent-nrt6-1.xx.fbcdn.net/v/t51.82787-15/535376957_18325763794225979_7017405374389164756_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=7d201b&_nc_ohc=Yrq24rpT4nMQ7kNvwHcuznU&_nc_oc=AdrzGfMA8CZ6JfTzLhVOJwn0wrwArJj-ws0KGXuVWL5Wj6ReGJT4Tjn91CqaMkh22-4ppnYfANnpwEWhw8T5aCwC&_nc_zt=23&_nc_ht=scontent-nrt6-1.xx&oh=00_AfxRZk9NVaaWFQzhgQYuwGkPKxWN0XMz-Ion99o0GnpK7A&oe=69C95021',
+    followers:    '215,610',
+    followersK:   '215K',
+    posts:        '317',
+    engRate:      '0.28%',
+    avgLikes:     '586',
+    avgComments:  '11',
+    genres:       ['コスメ', 'ファッション', 'ライフスタイル', 'グルメ'],
+    target:       ['🇯🇵 日本', '20代女性', '30代女性'],
+    cases: [
+      { num: '01', brand: 'Intimissimi × Calzedonia', detail: 'ランジェリーブランドのSNS PR施策', type: 'SNS PR' },
+      { num: '02', brand: 'ナンバーズイン',            detail: 'スキンケアブランドのギフティング案件', type: 'Gifting' },
+      { num: '03', brand: 'Picchi',                    detail: '写真編集AIアプリのプロモーション',   type: 'App PR'  }
+    ],
+    pricing: [
+      { icon: '📸', format: '01', nameEN: 'Feed Post', nameJP: 'フィード投稿', range: '¥8〜15万', unit: '1投稿あたり' },
+      { icon: '🎬', format: '02', nameEN: 'Reels',     nameJP: 'リール',       range: '¥12〜20万', unit: '1本あたり', featured: true },
+      { icon: '⏱', format: '03', nameEN: 'Stories',   nameJP: 'ストーリーズ', range: '¥3〜6万',   unit: '1セットあたり' }
+    ]
+  };
+
+  // Animate stats on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.stat-block, .case-item, .price-card, .profile-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
