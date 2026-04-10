@@ -740,34 +740,6 @@
       facts.appendChild(d);
     });
 
-    // SNS stats
-    const grid = document.getElementById('stats-grid');
-    [
-      {
-        platform: 'Instagram', handle: TALENT.sns.instagram.handle, url: TALENT.sns.instagram.url,
-        metrics: [
-          { num: TALENT.sns.instagram.followers, label: 'Followers' },
-          { num: TALENT.sns.instagram.engRate,   label: 'Engagement' },
-          { num: TALENT.sns.instagram.avgLikes,  label: 'Avg. Likes' },
-        ]
-      },
-      {
-        platform: 'TikTok', handle: TALENT.sns.tiktok.handle, url: TALENT.sns.tiktok.url,
-        metrics: [
-          { num: TALENT.sns.tiktok.followers, label: 'Followers' },
-        ]
-      },
-    ].forEach(p => {
-      const d = document.createElement('div'); d.className = 'stat-block';
-      d.style.cursor = 'pointer'; d.onclick = () => window.open(p.url,'_blank');
-      const m = p.metrics.map(x => `<div><div class="stat-num">${x.num}</div><div class="stat-label">${x.label}</div></div>`).join('');
-      d.innerHTML = `<div class="stat-platform">${p.platform}</div><div class="stat-handle">${p.handle}</div><div class="stat-metrics">${m}</div>`;
-      grid.appendChild(d);
-    });
-    const tot = document.createElement('div'); tot.className = 'stat-total';
-    tot.innerHTML = `<div class="stat-total-label">Total Followers</div><div class="stat-total-num">${TALENT.totalFollowers}</div>`;
-    grid.appendChild(tot);
-
     // Posts
     const pg = document.getElementById('posts-grid');
     TALENT.recentPosts.forEach(p => {
