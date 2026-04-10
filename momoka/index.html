@@ -6,7 +6,7 @@
   <title>MOMOKA — Media Kit</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,200;0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 
   <script>
   const TALENT = {
@@ -34,8 +34,6 @@
         handle:    "@peach12299",
         url:       "https://tiktok.com/@peach12299",
         followers: "300,000+",
-        engRate:   "—",
-        avgLikes:  "—",
       },
     },
     totalFollowers: "517,000+",
@@ -49,18 +47,13 @@
     ],
     genres: ["コスメ", "メイク", "ファッション", "ライフスタイル", "ビューティー"],
     strengths: ["泣き顔メイク", "あざとメイク", "コスメレビュー", "モデルポートレート", "English対応"],
-    cases: [
-      { brand: "Intimissimi", type: "SNS PR", desc: "イタリアのランジェリーブランドとのSNSプロモーション。" },
-      { brand: "ナンバーズイン", type: "ギフティング", desc: "スキンケアブランドのPRギフティング。" },
-      { brand: "Picchi", type: "コラボ", desc: "ビューティー・ライフスタイルブランドとのタイアップ投稿。" },
-    ],
     pricing: [
       { type: "Instagram フィード投稿", price: "¥323,000〜", note: "1投稿" },
-      { type: "Instagram リール", price: "¥431,000〜", note: "1本" },
+      { type: "Instagram リール",       price: "¥431,000〜", note: "1本" },
       { type: "Instagram ストーリーズ", price: "¥215,000〜", note: "1セット" },
-      { type: "Instagram 二次利用", price: "¥215,000〜", note: "1ヶ月" },
-      { type: "TikTok 投稿", price: "¥600,000〜", note: "1本" },
-      { type: "TikTok 二次利用", price: "¥300,000〜", note: "1ヶ月" },
+      { type: "Instagram 二次利用",     price: "¥215,000〜", note: "1ヶ月" },
+      { type: "TikTok 投稿",            price: "¥600,000〜", note: "1本" },
+      { type: "TikTok 二次利用",        price: "¥300,000〜", note: "1ヶ月" },
     ],
     contact: {
       agency:  "GOOD VIBES AGENCY",
@@ -72,859 +65,521 @@
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
+    html { font-size: 16px; overflow-x: hidden; scroll-behavior: smooth; }
 
     :root {
-      --ink:      #0c0b09;
-      --ink2:     #1e1c18;
-      --ivory:    #f5f0e8;
-      --ivory2:   #ede8de;
-      --ivory3:   #e4ddd0;
-      --rose:     #b8896a;
-      --rose2:    #d4a882;
-      --gold:     #c9a96e;
-      --mid:      #7a7369;
-      --light:    #a89e93;
-      --border:   #d8d0c4;
-      --border2:  #c8bfb2;
-
-      --serif:    'Cormorant Garamond', Georgia, serif;
-      --sans:     'DM Sans', system-ui, sans-serif;
+      --black:   #111111;
+      --dark:    #333333;
+      --mid:     #777777;
+      --light:   #aaaaaa;
+      --rule:    #e8e8e8;
+      --bg:      #ffffff;
+      --bg2:     #f9f9f9;
+      --sans:    'DM Sans', -apple-system, sans-serif;
+      --serif:   'DM Serif Display', Georgia, serif;
     }
 
     body {
-      background: var(--ivory);
-      color: var(--ink);
+      background: var(--bg);
+      color: var(--black);
       font-family: var(--sans);
       -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      overflow-x: hidden;
+      line-height: 1.6;
     }
 
     img { display: block; max-width: 100%; }
     a { color: inherit; text-decoration: none; }
 
-    /* ─────────────────────────────
-       NOISE OVERLAY
-    ───────────────────────────── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.025;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-      background-size: 128px;
-    }
-
-    /* ─────────────────────────────
-       NAV
-    ───────────────────────────── */
+    /* ─── NAV ─── */
     nav {
       position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 200;
+      inset: 0 0 auto 0;
+      z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 1.5rem 3rem;
-      mix-blend-mode: normal;
-      transition: background 0.4s, padding 0.4s;
+      background: rgba(255,255,255,0);
+      transition: background .3s, border-color .3s;
+      border-bottom: 1px solid transparent;
     }
     nav.scrolled {
-      background: rgba(245, 240, 232, 0.92);
-      backdrop-filter: blur(12px);
-      padding: 1rem 3rem;
-      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom-color: var(--rule);
     }
-
     .nav-logo {
-      font-family: var(--sans);
-      font-size: 0.6rem;
+      font-size: 0.62rem;
       font-weight: 400;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--ink2);
-    }
-    .nav-right {
-      font-family: var(--sans);
-      font-size: 0.6rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
+      color: var(--black);
+    }
+    .nav-date {
+      font-size: 0.62rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
       color: var(--light);
     }
 
-    /* ─────────────────────────────
-       HERO — full-screen editorial
-    ───────────────────────────── */
+    /* ─── HERO ─── */
     .hero {
-      min-height: 100svh;
       display: grid;
-      grid-template-columns: 52% 48%;
-      position: relative;
-      overflow: hidden;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100svh;
+      padding-top: 4rem;
     }
-
     .hero-photo {
-      position: relative;
       overflow: hidden;
+      background: var(--bg2);
     }
     .hero-photo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 15%;
-      display: block;
-      transform: scale(1.04);
-      transition: transform 6s ease;
+      object-position: center 18%;
     }
-    .hero-photo.loaded img { transform: scale(1); }
-
-    /* vertical text strip */
-    .hero-vertical {
-      position: absolute;
-      left: 1.6rem;
-      top: 50%;
-      transform: translateY(-50%) rotate(-90deg);
-      transform-origin: center center;
-      white-space: nowrap;
-      font-size: 0.52rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
-      font-family: var(--sans);
-    }
-
-    .hero-text {
-      background: var(--ink);
+    .hero-copy {
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 5rem 4rem 4rem 4rem;
-      position: relative;
+      padding: 5rem 4rem 4.5rem 4rem;
+      border-left: 1px solid var(--rule);
     }
-
-    .hero-index {
-      position: absolute;
-      top: 5.5rem;
-      right: 3.5rem;
-      font-family: var(--serif);
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.25);
-      letter-spacing: 0.1em;
-      font-style: italic;
-    }
-
-    .hero-eyebrow {
+    .hero-label {
       font-size: 0.58rem;
-      font-weight: 300;
-      letter-spacing: 0.35em;
+      font-weight: 400;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.6rem;
+      color: var(--light);
+      margin-bottom: 2rem;
     }
-
     .hero-name {
       font-family: var(--serif);
-      font-size: clamp(4.5rem, 9vw, 8rem);
-      font-weight: 300;
-      line-height: 0.88;
-      color: var(--ivory);
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      font-weight: 400;
+      line-height: 1;
+      color: var(--black);
       letter-spacing: -0.01em;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.3rem;
     }
-    .hero-name em {
-      font-style: italic;
-      color: var(--rose2);
-    }
-
     .hero-name-ja {
-      font-family: var(--serif);
-      font-size: clamp(1rem, 1.8vw, 1.4rem);
+      font-family: var(--sans);
+      font-size: 0.75rem;
       font-weight: 300;
-      letter-spacing: 0.45em;
-      color: rgba(245,240,232,0.4);
-      margin-bottom: 3rem;
-    }
-
-    .hero-line {
-      width: 40px;
-      height: 1px;
-      background: var(--rose);
+      letter-spacing: 0.5em;
+      color: var(--light);
       margin-bottom: 2.5rem;
     }
-
     .hero-tagline {
-      font-family: var(--serif);
-      font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+      font-size: 0.95rem;
       font-weight: 300;
-      color: rgba(245,240,232,0.75);
-      line-height: 1.7;
-      font-style: italic;
-      margin-bottom: 3.5rem;
-      max-width: 26rem;
+      color: var(--mid);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
     }
-
-    .hero-handles {
+    .hero-links {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      margin-bottom: 3.5rem;
+      gap: 0.4rem;
+      margin-bottom: 3rem;
     }
-    .hero-handle-item {
+    .hero-link {
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      font-size: 0.68rem;
-      letter-spacing: 0.06em;
-      color: rgba(245,240,232,0.45);
-      transition: color 0.2s;
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: var(--mid);
+      letter-spacing: 0.04em;
+      transition: color .2s;
     }
-    .hero-handle-item:hover { color: var(--rose2); }
-    .hero-handle-dot {
-      width: 3px; height: 3px;
+    .hero-link:hover { color: var(--black); }
+    .hero-link-dot {
+      width: 4px; height: 4px;
       border-radius: 50%;
-      background: var(--rose);
+      background: var(--rule);
       flex-shrink: 0;
     }
-
     .hero-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      border-top: 1px solid rgba(245,240,232,0.1);
+      border-top: 1px solid var(--rule);
       padding-top: 2.5rem;
+      gap: 0;
     }
     .hero-stat + .hero-stat {
-      border-left: 1px solid rgba(245,240,232,0.08);
+      border-left: 1px solid var(--rule);
       padding-left: 1.5rem;
     }
-
     .hero-stat-num {
       font-family: var(--serif);
-      font-size: clamp(1.5rem, 3.2vw, 2.4rem);
-      font-weight: 300;
-      color: var(--ivory);
-      line-height: 1;
-      letter-spacing: -0.02em;
-    }
-    .hero-stat-label {
-      font-size: 0.54rem;
-      font-weight: 300;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: rgba(245,240,232,0.3);
-      margin-top: 0.5rem;
-    }
-
-    /* ─────────────────────────────
-       MARQUEE STRIP
-    ───────────────────────────── */
-    .marquee-strip {
-      background: var(--rose);
-      overflow: hidden;
-      padding: 0.8rem 0;
-      white-space: nowrap;
-    }
-    .marquee-track {
-      display: inline-flex;
-      animation: marquee 18s linear infinite;
-    }
-    .marquee-item {
-      font-size: 0.62rem;
-      font-weight: 300;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--ivory);
-      padding: 0 2.5rem;
-    }
-    .marquee-sep {
-      color: rgba(245,240,232,0.4);
-    }
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    /* ─────────────────────────────
-       SECTION BASE
-    ───────────────────────────── */
-    .section-wrap {
-      padding: 9rem 0;
-    }
-    .section-wrap.dark {
-      background: var(--ink);
-    }
-    .section-wrap.ivory2 {
-      background: var(--ivory2);
-    }
-
-    .container {
-      max-width: 1160px;
-      margin: 0 auto;
-      padding: 0 4rem;
-    }
-
-    .section-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-    .section-eyebrow-line {
-      width: 28px;
-      height: 1px;
-      background: var(--rose);
-      flex-shrink: 0;
-    }
-    .section-eyebrow-text {
-      font-size: 0.58rem;
+      font-size: clamp(1.4rem, 2.8vw, 2.2rem);
       font-weight: 400;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--rose);
-    }
-
-    .section-title {
-      font-family: var(--serif);
-      font-size: clamp(2.8rem, 5.5vw, 5rem);
-      font-weight: 300;
-      line-height: 1.05;
-      color: var(--ink);
+      color: var(--black);
+      line-height: 1;
       letter-spacing: -0.01em;
     }
-    .section-title em { font-style: italic; color: var(--rose); }
-    .dark .section-title { color: var(--ivory); }
+    .hero-stat-label {
+      font-size: 0.56rem;
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--light);
+      margin-top: 0.4rem;
+    }
 
-    /* ─────────────────────────────
-       PROFILE
-    ───────────────────────────── */
-    .profile-layout {
+    /* ─── COMMON SECTION ─── */
+    .sec {
+      padding: 8rem 0;
+    }
+    .sec.alt { background: var(--bg2); }
+    .sec.dark {
+      background: var(--black);
+      color: var(--bg);
+    }
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+    .sec-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    .dark .sec-head { border-bottom-color: rgba(255,255,255,0.1); }
+    .sec-label {
+      font-size: 0.58rem;
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--light);
+    }
+    .dark .sec-label { color: rgba(255,255,255,0.3); }
+    .sec-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--black);
+      letter-spacing: -0.01em;
+    }
+    .dark .sec-title { color: var(--bg); }
+
+    /* ─── PROFILE ─── */
+    .profile-grid {
       display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 7rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
       align-items: start;
     }
-
     .profile-bio {
-      font-family: var(--serif);
-      font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+      font-size: 0.95rem;
       font-weight: 300;
-      line-height: 2;
       color: var(--mid);
-      font-style: italic;
-      margin-top: 2.5rem;
-      margin-bottom: 3rem;
+      line-height: 2.1;
+      margin-bottom: 2.5rem;
     }
-
-    .strengths-wrap {
+    .tag-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 0.4rem;
     }
-    .strength-pill {
-      font-size: 0.65rem;
+    .tag {
+      font-size: 0.64rem;
       font-weight: 300;
-      letter-spacing: 0.1em;
-      padding: 0.5rem 1.1rem;
-      border: 1px solid var(--border2);
+      letter-spacing: 0.06em;
+      padding: 0.4rem 0.9rem;
+      border: 1px solid var(--rule);
       color: var(--mid);
-      font-family: var(--sans);
-    }
-
-    .facts-grid {
-      display: flex;
-      flex-direction: column;
     }
     .fact-row {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      padding: 1.1rem 0;
-      border-bottom: 1px solid var(--border);
-      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--rule);
     }
-    .fact-row:first-child { border-top: 1px solid var(--border); }
+    .fact-row:first-child { border-top: 1px solid var(--rule); }
     .fact-label {
       font-size: 0.6rem;
       font-weight: 400;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--light);
-      flex-shrink: 0;
     }
-    .fact-value {
-      font-family: var(--serif);
-      font-size: 1.05rem;
+    .fact-val {
+      font-size: 0.88rem;
       font-weight: 300;
-      color: var(--ink2);
-      text-align: right;
+      color: var(--dark);
     }
 
-    /* ─────────────────────────────
-       REACH — large typographic
-    ───────────────────────────── */
-    .reach-section { background: var(--ink); }
-
-    .reach-inner {
+    /* ─── SNS STATS ─── */
+    .stats-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
+      grid-template-columns: repeat(2, 1fr);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      border-left: 1px solid rgba(255,255,255,0.1);
     }
-
-    .reach-left {
-      padding: 8rem 4rem 8rem 0;
-      border-right: 1px solid rgba(245,240,232,0.08);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    .stat-block {
+      padding: 3rem;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+      transition: background .2s;
     }
-
-    .reach-right {
-      padding: 8rem 0 8rem 5rem;
-    }
-
-    .reach-label {
+    .stat-block:hover { background: rgba(255,255,255,0.04); }
+    .stat-platform {
       font-size: 0.58rem;
-      font-weight: 300;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--rose);
-      margin-bottom: 1.5rem;
-    }
-
-    .reach-num {
-      font-family: var(--serif);
-      font-size: clamp(4rem, 8vw, 8rem);
-      font-weight: 300;
-      line-height: 0.9;
-      color: var(--ivory);
-      letter-spacing: -0.02em;
-      margin-bottom: 0.5rem;
-    }
-    .reach-num em { color: var(--rose2); font-style: italic; }
-
-    .reach-sublabel {
-      font-size: 0.7rem;
-      font-weight: 300;
-      letter-spacing: 0.12em;
-      color: rgba(245,240,232,0.3);
-    }
-
-    .reach-platform-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .reach-platform {
-      padding-bottom: 2rem;
-      border-bottom: 1px solid rgba(245,240,232,0.07);
-    }
-    .reach-platform:last-child { border-bottom: none; padding-bottom: 0; }
-
-    .reach-platform-name {
-      font-size: 0.6rem;
       font-weight: 400;
       letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: rgba(245,240,232,0.3);
-      margin-bottom: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 1rem;
     }
-
-    .reach-platform-handle {
-      font-family: var(--serif);
-      font-size: 1.2rem;
+    .stat-handle {
+      font-size: 0.85rem;
       font-weight: 300;
-      color: rgba(245,240,232,0.8);
-      margin-bottom: 1.25rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 2rem;
     }
-
-    .reach-metrics {
-      display: flex;
-      gap: 2.5rem;
-    }
-
-    .reach-metric-num {
+    .stat-metrics { display: flex; gap: 2.5rem; }
+    .stat-num {
       font-family: var(--serif);
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      font-weight: 300;
-      color: var(--ivory);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 400;
+      color: var(--bg);
       line-height: 1;
-      letter-spacing: -0.02em;
-    }
-    .reach-metric-label {
-      font-size: 0.55rem;
-      font-weight: 300;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(245,240,232,0.25);
-      margin-top: 0.4rem;
-    }
-
-    /* ─────────────────────────────
-       POSTS — editorial grid
-    ───────────────────────────── */
-    .posts-intro {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 3rem;
-    }
-
-    .posts-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      grid-template-rows: auto auto;
-      gap: 0.5rem;
-    }
-
-    .post-card {
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      background: var(--ivory3);
-    }
-
-    /* カード大小変化でメリハリ */
-    .post-card:nth-child(1) { grid-column: span 2; grid-row: span 2; aspect-ratio: 3/4; }
-    .post-card:nth-child(2) { grid-column: span 2; aspect-ratio: 1; }
-    .post-card:nth-child(3) { grid-column: span 2; aspect-ratio: 1; }
-    .post-card:nth-child(4) { grid-column: span 2; aspect-ratio: 1; }
-    .post-card:nth-child(5) { grid-column: span 2; aspect-ratio: 1; }
-    .post-card:nth-child(6) { grid-column: span 2; aspect-ratio: 1; }
-
-    .post-thumb {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.5s cubic-bezier(.25,.46,.45,.94);
-    }
-    .post-card:hover .post-thumb { transform: scale(1.06); }
-
-    .post-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(12,11,9,0.7) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.3s;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 1.25rem;
-    }
-    .post-card:hover .post-overlay { opacity: 1; }
-
-    .post-stats {
-      display: flex;
-      gap: 1rem;
-    }
-    .post-stat {
-      font-size: 0.7rem;
-      color: rgba(245,240,232,0.9);
-      letter-spacing: 0.04em;
-    }
-
-    .post-badge {
-      position: absolute;
-      top: 0.6rem;
-      left: 0.6rem;
-      font-size: 0.47rem;
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.5rem;
-      background: rgba(245,240,232,0.88);
-      color: var(--ink);
-    }
-
-    .post-placeholder {
-      width: 100%;
-      height: 100%;
-      min-height: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.55rem;
-      letter-spacing: 0.15em;
-      color: var(--light);
-      text-transform: uppercase;
-    }
-
-    /* ─────────────────────────────
-       GENRES
-    ───────────────────────────── */
-    .genres-section { background: var(--ivory2); }
-
-    .genres-layout {
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      gap: 7rem;
-      align-items: center;
-    }
-
-    .genre-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .genre-item {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      padding: 1.4rem 0;
-      border-bottom: 1px solid var(--border);
-      cursor: default;
-      transition: padding-left 0.3s;
-    }
-    .genre-item:first-child { border-top: 1px solid var(--border); }
-    .genre-item:hover { padding-left: 0.5rem; }
-
-    .genre-num {
-      font-family: var(--serif);
-      font-size: 0.75rem;
-      color: var(--light);
-      letter-spacing: 0.1em;
-      font-style: italic;
-      width: 2rem;
-      flex-shrink: 0;
-    }
-
-    .genre-name {
-      font-family: var(--serif);
-      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-      font-weight: 300;
-      color: var(--ink2);
-      letter-spacing: 0.02em;
-    }
-
-    .genre-arrow {
-      margin-left: auto;
-      font-size: 0.7rem;
-      color: var(--border2);
-      transition: color 0.3s, transform 0.3s;
-    }
-    .genre-item:hover .genre-arrow { color: var(--rose); transform: translateX(4px); }
-
-    /* ─────────────────────────────
-       PRICING
-    ───────────────────────────── */
-    .pricing-layout {
-      display: grid;
-      grid-template-columns: 1fr 1.8fr;
-      gap: 7rem;
-      align-items: start;
-    }
-
-    .pricing-note {
-      font-family: var(--serif);
-      font-size: 1.05rem;
-      font-weight: 300;
-      line-height: 2;
-      color: var(--mid);
-      font-style: italic;
-      margin-top: 2.5rem;
-    }
-
-    .pricing-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .pricing-table tr {
-      border-bottom: 1px solid var(--border);
-      transition: background 0.2s;
-    }
-    .pricing-table tr:last-child { border-bottom: none; }
-    .pricing-table tr:first-child { border-top: 1px solid var(--border); }
-    .pricing-table tr:hover { background: var(--ivory2); }
-    .pricing-table td {
-      padding: 1.4rem 0;
-    }
-    .pricing-table td:first-child {
-      font-family: var(--sans);
-      font-size: 0.82rem;
-      font-weight: 300;
-      color: var(--mid);
-      letter-spacing: 0.02em;
-    }
-    .pricing-table td:last-child {
-      text-align: right;
-    }
-    .price-num {
-      font-family: var(--serif);
-      font-size: 1.5rem;
-      font-weight: 300;
-      color: var(--ink);
       letter-spacing: -0.01em;
     }
-    .price-unit {
-      font-size: 0.6rem;
-      color: var(--light);
-      letter-spacing: 0.08em;
-      margin-left: 0.4rem;
-    }
-
-    /* ─────────────────────────────
-       CTA
-    ───────────────────────────── */
-    .cta-section {
-      background: var(--ink);
-      padding: 10rem 0 8rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta-bg-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: var(--serif);
-      font-size: clamp(10rem, 20vw, 20rem);
-      font-weight: 300;
-      color: rgba(245,240,232,0.02);
-      white-space: nowrap;
-      pointer-events: none;
-      user-select: none;
-      letter-spacing: -0.04em;
-    }
-
-    .cta-eyebrow {
-      font-size: 0.58rem;
-      font-weight: 300;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--rose);
-      margin-bottom: 2.5rem;
-    }
-
-    .cta-title {
-      font-family: var(--serif);
-      font-size: clamp(2.5rem, 5.5vw, 5rem);
-      font-weight: 300;
-      color: var(--ivory);
-      line-height: 1.15;
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.01em;
-    }
-    .cta-title em { font-style: italic; color: var(--rose2); }
-
-    .cta-sub {
-      font-size: 0.7rem;
-      letter-spacing: 0.12em;
-      color: rgba(245,240,232,0.3);
-      margin-bottom: 4rem;
-      text-transform: uppercase;
-    }
-
-    .cta-btns {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      font-size: 0.62rem;
-      font-weight: 400;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--ink);
-      background: var(--ivory);
-      padding: 1.1rem 2.8rem;
-      transition: background 0.25s;
-      font-family: var(--sans);
-    }
-    .btn-primary:hover { background: var(--rose2); }
-
-    .btn-outline {
-      font-size: 0.62rem;
-      font-weight: 400;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: rgba(245,240,232,0.6);
-      border: 1px solid rgba(245,240,232,0.15);
-      padding: 1.1rem 2.8rem;
-      transition: border-color 0.25s, color 0.25s;
-      font-family: var(--sans);
-    }
-    .btn-outline:hover { border-color: var(--rose); color: var(--rose2); }
-
-    /* ─────────────────────────────
-       FOOTER
-    ───────────────────────────── */
-    footer {
-      background: var(--ink2);
-      padding: 2rem 4rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid rgba(245,240,232,0.06);
-    }
-    .footer-left {
-      font-size: 0.58rem;
+    .stat-label {
+      font-size: 0.56rem;
       font-weight: 300;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(245,240,232,0.25);
+      color: rgba(255,255,255,0.25);
+      margin-top: 0.5rem;
     }
-    .footer-right {
-      font-size: 0.55rem;
-      letter-spacing: 0.18em;
+    .stat-total {
+      grid-column: span 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 3rem;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .stat-total-label {
+      font-size: 0.58rem;
+      font-weight: 400;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: rgba(245,240,232,0.15);
+      color: rgba(255,255,255,0.3);
+    }
+    .stat-total-num {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 400;
+      color: var(--bg);
+      letter-spacing: -0.02em;
     }
 
-    /* ─────────────────────────────
-       FADE IN
-    ───────────────────────────── */
-    .fade-up {
+    /* ─── POSTS ─── */
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 4px;
+    }
+    .post-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg2);
+      aspect-ratio: 1;
+    }
+    .post-card:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+      aspect-ratio: unset;
+    }
+    .post-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
+    .post-card:hover img { transform: scale(1.04); }
+    .post-overlay {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.3);
+      display: flex; align-items: flex-end;
+      padding: 1rem;
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.75s cubic-bezier(.25,.46,.45,.94), transform 0.75s cubic-bezier(.25,.46,.45,.94);
+      transition: opacity .25s;
     }
-    .fade-up.in {
-      opacity: 1;
-      transform: none;
+    .post-card:hover .post-overlay { opacity: 1; }
+    .post-overlay-stats {
+      display: flex; gap: 1rem;
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.9);
     }
-    .fade-up:nth-child(2) { transition-delay: 0.1s; }
-    .fade-up:nth-child(3) { transition-delay: 0.18s; }
-    .fade-up:nth-child(4) { transition-delay: 0.26s; }
-    .fade-up:nth-child(5) { transition-delay: 0.34s; }
+    .post-badge {
+      position: absolute; top: 0.5rem; left: 0.5rem;
+      font-size: 0.46rem; font-weight: 400;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.2rem 0.45rem;
+      background: rgba(255,255,255,0.9);
+      color: var(--black);
+    }
+    .post-empty {
+      width: 100%; height: 100%; min-height: 120px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.52rem; letter-spacing: 0.12em;
+      color: var(--light); text-transform: uppercase;
+    }
 
-    /* ─────────────────────────────
-       RESPONSIVE
-    ───────────────────────────── */
-    @media (max-width: 960px) {
-      nav { padding: 1.2rem 1.5rem; }
-      nav.scrolled { padding: 0.9rem 1.5rem; }
-      .container { padding: 0 1.5rem; }
-      .section-wrap { padding: 6rem 0; }
+    /* ─── GENRES ─── */
+    .genre-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--rule);
+      cursor: default;
+    }
+    .genre-row:first-child { border-top: 1px solid var(--rule); }
+    .genre-left { display: flex; align-items: center; gap: 1.5rem; }
+    .genre-n {
+      font-size: 0.6rem; font-weight: 300;
+      letter-spacing: 0.1em; color: var(--light);
+      width: 1.5rem;
+    }
+    .genre-name {
+      font-family: var(--serif);
+      font-size: clamp(1.3rem, 2.5vw, 2rem);
+      font-weight: 400;
+      color: var(--black);
+    }
 
+    /* ─── PRICING ─── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .pricing-desc {
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 2;
+      margin-top: 1.5rem;
+    }
+    .p-table { width: 100%; border-collapse: collapse; }
+    .p-table tr { border-bottom: 1px solid var(--rule); }
+    .p-table tr:first-child { border-top: 1px solid var(--rule); }
+    .p-table tr:hover { background: var(--bg2); }
+    .p-table td { padding: 1.2rem 0; }
+    .p-table td:first-child {
+      font-size: 0.82rem; font-weight: 300; color: var(--mid);
+    }
+    .p-table td:last-child { text-align: right; }
+    .p-price {
+      font-family: var(--serif);
+      font-size: 1.35rem; font-weight: 400;
+      color: var(--black); letter-spacing: -0.01em;
+    }
+    .p-unit {
+      font-size: 0.6rem; font-weight: 300;
+      color: var(--light); margin-left: 0.3rem;
+    }
+
+    /* ─── CONTACT ─── */
+    .contact-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 0 5rem;
+    }
+    .contact-label {
+      font-size: 0.58rem; font-weight: 400;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 2rem;
+    }
+    .contact-title {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4.5vw, 4rem);
+      font-weight: 400; color: var(--bg);
+      line-height: 1.15; margin-bottom: 1rem;
+    }
+    .contact-sub {
+      font-size: 0.7rem; font-weight: 300;
+      letter-spacing: 0.1em; color: rgba(255,255,255,0.3);
+      margin-bottom: 3.5rem;
+      text-transform: uppercase;
+    }
+    .contact-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; }
+    .btn-w {
+      font-size: 0.62rem; font-weight: 400;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--black); background: var(--bg);
+      padding: 1rem 2.5rem;
+      border: 1px solid var(--bg);
+      transition: background .2s, color .2s;
+    }
+    .btn-w:hover { background: transparent; color: var(--bg); }
+    .btn-ghost2 {
+      font-size: 0.62rem; font-weight: 400;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 1rem 2.5rem;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-ghost2:hover { border-color: rgba(255,255,255,0.5); color: var(--bg); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 1.75rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-l {
+      font-size: 0.6rem; font-weight: 300;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+    }
+    .footer-r {
+      font-size: 0.56rem; font-weight: 300;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: rgba(255,255,255,0.12);
+    }
+
+    /* ─── FADE ─── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 860px) {
+      nav { padding: 1rem 1.5rem; }
+      .wrap { padding: 0 1.5rem; }
+      .sec { padding: 5rem 0; }
       .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-photo { height: 72vw; min-height: 320px; }
-      .hero-vertical { display: none; }
-      .hero-text { padding: 3.5rem 1.75rem 4rem; }
-      .hero-stats { grid-template-columns: repeat(3, 1fr); }
-
-      .profile-layout,
-      .genres-layout,
-      .pricing-layout,
-      .reach-inner { grid-template-columns: 1fr; gap: 3.5rem; }
-
-      .reach-left { border-right: none; border-bottom: 1px solid rgba(245,240,232,0.08); padding: 0 0 4rem; }
-      .reach-right { padding: 4rem 0 0; }
-
-      .posts-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      .post-card:nth-child(1) { grid-column: span 1; grid-row: span 1; aspect-ratio: 1; }
-      .post-card:nth-child(n) { grid-column: span 1; aspect-ratio: 1; }
-
+      .hero-photo { height: 70vw; }
+      .hero-copy { border-left: none; border-top: 1px solid var(--rule); padding: 3rem 1.5rem 4rem; }
+      .profile-grid, .pricing-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-total { grid-column: span 1; flex-direction: column; gap: 1rem; }
+      .posts-grid { grid-template-columns: repeat(3, 1fr); }
+      .post-card:first-child { grid-column: span 1; grid-row: span 1; aspect-ratio: 1; }
       footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
     }
   </style>
@@ -934,165 +589,130 @@
   <!-- NAV -->
   <nav id="nav">
     <div class="nav-logo">Good Vibes Agency</div>
-    <div class="nav-right" id="nav-date">Media Kit 2026.04</div>
+    <div class="nav-date" id="nav-date">Media Kit 2026.04</div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-photo" id="hero-photo-col">
-      <img id="hero-img" src="./momoka.jpg" alt="MOMOKA">
-      <div class="hero-vertical">Beauty Creator — Tokyo</div>
+    <div class="hero-photo">
+      <img src="./momoka.jpg" alt="MOMOKA — 桃佳">
     </div>
-    <div class="hero-text">
-      <div class="hero-index">001 / Profile</div>
-      <p class="hero-eyebrow">Talent — Beauty Creator</p>
-      <h1 class="hero-name"><em>Mo</em>moka</h1>
+    <div class="hero-copy">
+      <p class="hero-label">Talent — Beauty Creator</p>
+      <h1 class="hero-name">Momoka</h1>
       <p class="hero-name-ja">桃佳</p>
-      <div class="hero-line"></div>
       <p class="hero-tagline" id="hero-tagline"></p>
-      <div class="hero-handles" id="hero-handles"></div>
+      <div class="hero-links" id="hero-links"></div>
       <div class="hero-stats" id="hero-stats"></div>
     </div>
   </section>
 
-  <!-- MARQUEE -->
-  <div class="marquee-strip">
-    <div class="marquee-track" id="marquee-track"></div>
-  </div>
-
   <!-- PROFILE -->
-  <section class="section-wrap">
-    <div class="container">
-      <div class="profile-layout">
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-label">Profile</div>
+        <h2 class="sec-title">About Momoka</h2>
+      </div>
+      <div class="profile-grid">
         <div>
-          <div class="section-eyebrow fade-up">
-            <div class="section-eyebrow-line"></div>
-            <span class="section-eyebrow-text">Profile</span>
-          </div>
-          <h2 class="section-title fade-up">About<br><em>Momoka</em></h2>
-          <p class="profile-bio fade-up" id="profile-bio"></p>
-          <div class="strengths-wrap fade-up" id="strengths"></div>
+          <p class="profile-bio reveal" id="profile-bio"></p>
+          <div class="tag-list reveal" id="strengths"></div>
         </div>
-        <div class="facts-grid fade-up" id="profile-facts"></div>
+        <div class="reveal" id="profile-facts"></div>
       </div>
     </div>
   </section>
 
-  <!-- REACH -->
-  <section class="section-wrap dark">
-    <div class="container">
-      <div class="reach-inner">
-        <div class="reach-left">
-          <p class="reach-label fade-up">Total Reach</p>
-          <div class="reach-num fade-up" id="reach-total"></div>
-          <p class="reach-sublabel fade-up">Followers across all platforms</p>
-        </div>
-        <div class="reach-right">
-          <div class="reach-platform-list" id="reach-platforms"></div>
-        </div>
+  <!-- SNS -->
+  <section class="sec dark">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-label">Social Media</div>
+        <h2 class="sec-title">SNS 実績</h2>
       </div>
+      <div class="stats-grid reveal" id="stats-grid"></div>
     </div>
   </section>
 
-  <!-- RECENT POSTS -->
-  <section class="section-wrap">
-    <div class="container">
-      <div class="posts-intro">
-        <div>
-          <div class="section-eyebrow fade-up">
-            <div class="section-eyebrow-line"></div>
-            <span class="section-eyebrow-text">Recent Work</span>
-          </div>
-          <h2 class="section-title fade-up">直近の<br><em>投稿</em></h2>
-        </div>
-        <a href="https://instagram.com/moo_mo_k" target="_blank" rel="noopener"
-           style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--light);align-self:flex-end;transition:color .2s;"
-           onmouseover="this.style.color='var(--rose)'" onmouseout="this.style.color='var(--light)'">
-          View all →
-        </a>
+  <!-- POSTS -->
+  <section class="sec alt">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-label">Recent Work</div>
+        <h2 class="sec-title">直近の投稿</h2>
       </div>
-      <div class="posts-grid" id="posts-grid"></div>
+      <div class="posts-grid reveal" id="posts-grid"></div>
     </div>
   </section>
 
   <!-- GENRES -->
-  <section class="section-wrap ivory2">
-    <div class="container">
-      <div class="genres-layout">
-        <div>
-          <div class="section-eyebrow fade-up">
-            <div class="section-eyebrow-line"></div>
-            <span class="section-eyebrow-text">Expertise</span>
-          </div>
-          <h2 class="section-title fade-up">得意<br><em>ジャンル</em></h2>
-          <p class="fade-up" style="font-family:var(--serif);font-size:1.05rem;font-weight:300;color:var(--mid);line-height:2;font-style:italic;margin-top:2rem;">
-            コスメ・ビューティー領域を中心に<br>多様なジャンルへの親和性を持つ。
-          </p>
-        </div>
-        <div class="genre-list" id="genre-list"></div>
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-label">Expertise</div>
+        <h2 class="sec-title">得意ジャンル</h2>
       </div>
+      <div id="genre-list"></div>
     </div>
   </section>
 
   <!-- PRICING -->
-  <section class="section-wrap">
-    <div class="container">
-      <div class="pricing-layout">
-        <div>
-          <div class="section-eyebrow fade-up">
-            <div class="section-eyebrow-line"></div>
-            <span class="section-eyebrow-text">Pricing</span>
-          </div>
-          <h2 class="section-title fade-up">料金<br><em>目安</em></h2>
-          <p class="pricing-note fade-up">
-            記載の金額はあくまで目安です。案件内容・期間・プラットフォームの組み合わせによって変動します。
+  <section class="sec alt">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="sec-label">Pricing</div>
+        <h2 class="sec-title">料金目安</h2>
+      </div>
+      <div class="pricing-grid">
+        <div class="reveal">
+          <p class="pricing-desc">
+            記載の金額はあくまで目安です。案件内容・期間・プラットフォームの組み合わせによって変動いたします。詳細はお気軽にお問い合わせください。
           </p>
         </div>
-        <table class="pricing-table fade-up" id="pricing-table">
-          <tbody id="pricing-tbody"></tbody>
+        <table class="p-table reveal">
+          <tbody id="pricing-body"></tbody>
         </table>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta-section">
-    <div class="cta-bg-text">MOMOKA</div>
-    <div class="container" style="position:relative;">
-      <p class="cta-eyebrow fade-up" id="cta-agency"></p>
-      <h2 class="cta-title fade-up">Let's create<br><em>something beautiful.</em></h2>
-      <p class="cta-sub fade-up" id="cta-sub"></p>
-      <div class="cta-btns fade-up">
-        <a class="btn-primary" id="cta-email" href="">Contact Us</a>
-        <a class="btn-outline" id="cta-web" href="" target="_blank">Visit Website</a>
+  <!-- CONTACT -->
+  <section class="sec dark">
+    <div class="wrap">
+      <div class="contact-inner">
+        <p class="contact-label reveal" id="contact-agency"></p>
+        <h2 class="contact-title reveal">Let's work<br>together.</h2>
+        <p class="contact-sub reveal" id="contact-sub"></p>
+        <div class="contact-btns reveal">
+          <a class="btn-w" id="contact-email" href="">Contact Us</a>
+          <a class="btn-ghost2" id="contact-web" href="" target="_blank">Visit Website</a>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-left" id="footer-left"></div>
-    <div class="footer-right">Confidential — For Business Use Only</div>
+    <div class="footer-l" id="footer-l"></div>
+    <div class="footer-r">Confidential — For Business Use Only</div>
   </footer>
 
   <script>
   (function () {
-    // ── Hero
-    document.getElementById('hero-img').onload = function () {
-      document.getElementById('hero-photo-col').classList.add('loaded');
-    };
+    // Hero
     document.getElementById('hero-tagline').textContent = TALENT.taglineJa;
 
-    const handlesEl = document.getElementById('hero-handles');
+    const linksEl = document.getElementById('hero-links');
     [
-      { icon: '◉', label: 'Instagram', handle: TALENT.sns.instagram.handle, url: TALENT.sns.instagram.url },
-      { icon: '◉', label: 'TikTok',    handle: TALENT.sns.tiktok.handle,    url: TALENT.sns.tiktok.url },
+      { label: 'Instagram', url: TALENT.sns.instagram.url, handle: TALENT.sns.instagram.handle },
+      { label: 'TikTok',    url: TALENT.sns.tiktok.url,    handle: TALENT.sns.tiktok.handle },
     ].forEach(s => {
       const a = document.createElement('a');
+      a.className = 'hero-link';
       a.href = s.url; a.target = '_blank'; a.rel = 'noopener';
-      a.className = 'hero-handle-item';
-      a.innerHTML = `<span class="hero-handle-dot"></span><span style="color:rgba(245,240,232,0.28);font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;">${s.label}</span><span style="margin-left:0.25rem;">${s.handle}</span>`;
-      handlesEl.appendChild(a);
+      a.innerHTML = `<span class="hero-link-dot"></span><span style="font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--light)">${s.label}</span> ${s.handle}`;
+      linksEl.appendChild(a);
     });
 
     const statsEl = document.getElementById('hero-stats');
@@ -1107,129 +727,102 @@
       statsEl.appendChild(d);
     });
 
-    // ── Marquee
-    const items = ['Beauty Creator', '◆', 'Tokyo', '◆', 'Instagram', '◆', 'TikTok', '◆', '泣き顔メイク', '◆', 'Good Vibes Agency', '◆'];
-    const track = document.getElementById('marquee-track');
-    const html = items.map(t => `<span class="marquee-item${t==='◆'?' marquee-sep':''}">${t}</span>`).join('');
-    track.innerHTML = html.repeat(4);
-
-    // ── Profile
+    // Profile
     document.getElementById('profile-bio').textContent = TALENT.bio;
-    const strengths = document.getElementById('strengths');
+    const str = document.getElementById('strengths');
     TALENT.strengths.forEach(s => {
-      const el = document.createElement('span');
-      el.className = 'strength-pill';
-      el.textContent = s;
-      strengths.appendChild(el);
+      const span = document.createElement('span'); span.className = 'tag'; span.textContent = s;
+      str.appendChild(span);
     });
-
-    const factsEl = document.getElementById('profile-facts');
+    const facts = document.getElementById('profile-facts');
     [
-      { label: 'Birthday',  value: TALENT.birthday + '（' + TALENT.age + '歳）' },
-      { label: 'Height',    value: TALENT.height },
-      { label: 'From',      value: TALENT.birthplace },
-      { label: 'Language',  value: '日本語 / English' },
-      { label: 'Instagram', value: TALENT.sns.instagram.handle },
-      { label: 'TikTok',    value: TALENT.sns.tiktok.handle },
+      { label: 'Birthday',  val: `${TALENT.birthday}（${TALENT.age}歳）` },
+      { label: 'Height',    val: TALENT.height },
+      { label: 'From',      val: TALENT.birthplace },
+      { label: 'Language',  val: '日本語 / English' },
+      { label: 'Instagram', val: TALENT.sns.instagram.handle },
+      { label: 'TikTok',    val: TALENT.sns.tiktok.handle },
     ].forEach(f => {
-      const row = document.createElement('div');
-      row.className = 'fact-row';
-      row.innerHTML = `<span class="fact-label">${f.label}</span><span class="fact-value">${f.value}</span>`;
-      factsEl.appendChild(row);
+      const d = document.createElement('div'); d.className = 'fact-row';
+      d.innerHTML = `<span class="fact-label">${f.label}</span><span class="fact-val">${f.val}</span>`;
+      facts.appendChild(d);
     });
 
-    // ── Reach
-    const totalEl = document.getElementById('reach-total');
-    totalEl.innerHTML = TALENT.totalFollowers.replace(/(\d+),(\d+)/g, '<em>$1</em>,$2') + (TALENT.totalFollowers.includes('+') ? '' : '+');
-    totalEl.className = 'reach-num';
-
-    const platformsEl = document.getElementById('reach-platforms');
+    // SNS stats
+    const grid = document.getElementById('stats-grid');
     [
       {
-        name: 'Instagram', handle: TALENT.sns.instagram.handle,
-        url: TALENT.sns.instagram.url,
+        platform: 'Instagram', handle: TALENT.sns.instagram.handle, url: TALENT.sns.instagram.url,
         metrics: [
           { num: TALENT.sns.instagram.followers, label: 'Followers' },
-          { num: TALENT.sns.instagram.engRate,   label: 'Eng. Rate' },
+          { num: TALENT.sns.instagram.engRate,   label: 'Engagement' },
           { num: TALENT.sns.instagram.avgLikes,  label: 'Avg. Likes' },
         ]
       },
       {
-        name: 'TikTok', handle: TALENT.sns.tiktok.handle,
-        url: TALENT.sns.tiktok.url,
+        platform: 'TikTok', handle: TALENT.sns.tiktok.handle, url: TALENT.sns.tiktok.url,
         metrics: [
           { num: TALENT.sns.tiktok.followers, label: 'Followers' },
         ]
       },
     ].forEach(p => {
-      const div = document.createElement('div');
-      div.className = 'reach-platform';
-      div.style.cursor = 'pointer';
-      div.onclick = () => window.open(p.url, '_blank');
-      const metricsHTML = p.metrics.map(m => `
-        <div>
-          <div class="reach-metric-num">${m.num}</div>
-          <div class="reach-metric-label">${m.label}</div>
-        </div>`).join('');
-      div.innerHTML = `
-        <div class="reach-platform-name">${p.name}</div>
-        <div class="reach-platform-handle">${p.handle}</div>
-        <div class="reach-metrics">${metricsHTML}</div>`;
-      platformsEl.appendChild(div);
+      const d = document.createElement('div'); d.className = 'stat-block';
+      d.style.cursor = 'pointer'; d.onclick = () => window.open(p.url,'_blank');
+      const m = p.metrics.map(x => `<div><div class="stat-num">${x.num}</div><div class="stat-label">${x.label}</div></div>`).join('');
+      d.innerHTML = `<div class="stat-platform">${p.platform}</div><div class="stat-handle">${p.handle}</div><div class="stat-metrics">${m}</div>`;
+      grid.appendChild(d);
     });
+    const tot = document.createElement('div'); tot.className = 'stat-total';
+    tot.innerHTML = `<div class="stat-total-label">Total Followers</div><div class="stat-total-num">${TALENT.totalFollowers}</div>`;
+    grid.appendChild(tot);
 
-    // ── Posts
-    const postsGrid = document.getElementById('posts-grid');
-    TALENT.recentPosts.forEach((p, i) => {
-      const a = document.createElement('a');
+    // Posts
+    const pg = document.getElementById('posts-grid');
+    TALENT.recentPosts.forEach(p => {
+      const a = document.createElement('a'); a.className = 'post-card';
       a.href = p.url; a.target = '_blank'; a.rel = 'noopener';
-      a.className = 'post-card';
       if (p.thumb) {
-        const statsHTML = `<div class="post-stats"><span class="post-stat">♥ ${p.likes > 0 ? p.likes.toLocaleString() : '—'}</span><span class="post-stat">💬 ${p.comments}</span></div>`;
-        a.innerHTML = `<img class="post-thumb" src="${p.thumb}" alt="" loading="lazy"><div class="post-overlay">${statsHTML}</div><span class="post-badge">${p.type}</span>`;
+        const st = `<div class="post-overlay"><div class="post-overlay-stats"><span>♥ ${p.likes > 0 ? p.likes.toLocaleString() : '—'}</span><span>💬 ${p.comments}</span></div></div>`;
+        a.innerHTML = `<img src="${p.thumb}" alt="" loading="lazy">${st}<span class="post-badge">${p.type}</span>`;
       } else {
-        a.innerHTML = `<div class="post-placeholder">${p.type}</div>`;
+        a.innerHTML = `<div class="post-empty">${p.type}</div>`;
       }
-      postsGrid.appendChild(a);
+      pg.appendChild(a);
     });
 
-    // ── Genres
-    const genreList = document.getElementById('genre-list');
+    // Genres
+    const gl = document.getElementById('genre-list');
     TALENT.genres.forEach((g, i) => {
-      const div = document.createElement('div');
-      div.className = 'genre-item fade-up';
-      div.innerHTML = `<span class="genre-num">0${i+1}</span><span class="genre-name">${g}</span><span class="genre-arrow">→</span>`;
-      genreList.appendChild(div);
+      const d = document.createElement('div'); d.className = 'genre-row reveal';
+      d.innerHTML = `<div class="genre-left"><span class="genre-n">0${i+1}</span><span class="genre-name">${g}</span></div>`;
+      gl.appendChild(d);
     });
 
-    // ── Pricing
-    const tbody = document.getElementById('pricing-tbody');
+    // Pricing
+    const pb = document.getElementById('pricing-body');
     TALENT.pricing.forEach(p => {
       const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${p.type}</td><td><span class="price-num">${p.price}</span><span class="price-unit">/ ${p.note}</span></td>`;
-      tbody.appendChild(tr);
+      tr.innerHTML = `<td>${p.type}</td><td><span class="p-price">${p.price}</span><span class="p-unit">/ ${p.note}</span></td>`;
+      pb.appendChild(tr);
     });
 
-    // ── CTA & footer
-    document.getElementById('cta-agency').textContent = TALENT.contact.agency;
-    document.getElementById('cta-sub').textContent = 'Inquiries about ' + TALENT.nameJa + ' / ' + TALENT.name;
-    document.getElementById('cta-email').href = 'mailto:' + TALENT.contact.email;
-    document.getElementById('cta-web').href = TALENT.contact.website;
-    document.getElementById('footer-left').textContent = '© ' + new Date().getFullYear() + ' ' + TALENT.contact.agency;
+    // Contact & footer
+    document.getElementById('contact-agency').textContent = TALENT.contact.agency;
+    document.getElementById('contact-sub').textContent = `Inquiries about ${TALENT.nameJa} / ${TALENT.name}`;
+    document.getElementById('contact-email').href = `mailto:${TALENT.contact.email}`;
+    document.getElementById('contact-web').href = TALENT.contact.website;
+    document.getElementById('footer-l').textContent = `© ${new Date().getFullYear()} ${TALENT.contact.agency}`;
 
-    // ── Scroll nav
+    // Nav scroll
     const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), { passive: true });
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), { passive: true });
 
-    // ── Intersection observer for fade-up
+    // Reveal
     const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   })();
   </script>
-
 </body>
 </html>
