@@ -127,11 +127,13 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       min-height: 100svh;
-      padding-top: 4rem;
     }
     .hero-photo {
       overflow: hidden;
       background: var(--bg2);
+      position: sticky;
+      top: 0;
+      height: 100svh;
     }
     .hero-photo img {
       width: 100%;
@@ -142,9 +144,10 @@
     .hero-copy {
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding: 5rem 4rem 4.5rem 4rem;
+      justify-content: center;
+      padding: 7rem 4rem 5rem 4rem;
       border-left: 1px solid var(--rule);
+      min-height: 100svh;
     }
     .hero-label {
       font-size: 0.58rem;
@@ -573,8 +576,8 @@
       .wrap { padding: 0 1.5rem; }
       .sec { padding: 5rem 0; }
       .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-photo { height: 70vw; }
-      .hero-copy { border-left: none; border-top: 1px solid var(--rule); padding: 3rem 1.5rem 4rem; }
+      .hero-photo { height: 80vw; min-height: 280px; position: relative; top: auto; }
+      .hero-copy { border-left: none; border-top: 1px solid var(--rule); padding: 3rem 1.5rem 4rem; min-height: auto; justify-content: flex-start; }
       .profile-grid, .pricing-grid { grid-template-columns: 1fr; gap: 3rem; }
       .stats-grid { grid-template-columns: 1fr; }
       .stat-total { grid-column: span 1; flex-direction: column; gap: 1rem; }
