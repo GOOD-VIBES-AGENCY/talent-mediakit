@@ -36,10 +36,6 @@
         engRate:   "—",
         avgLikes:  "—",
       },
-      x: {
-        handle:    "@momoka_O4O5",
-        url:       "https://x.com/momoka_O4O5",
-      },
     },
     totalFollowers: "515,000+",
     recentPosts: [
@@ -814,19 +810,7 @@
     </div>
   </section>
 
-  <!-- SNS Stats -->
-  <section class="sns-section" id="sns">
-    <div class="container">
-      <p class="section-label reveal">Social Media</p>
-      <h2 class="section-title reveal">SNS データ</h2>
-      <div class="divider reveal"></div>
-      <div class="sns-grid reveal" id="sns-grid"></div>
-      <div class="sns-total reveal">
-        <p class="sns-total-label">Total Followers</p>
-        <p class="sns-total-num" id="sns-total-num"></p>
-      </div>
-    </div>
-  </section>
+  <!-- SNS Stats: removed -->
 
   <!-- Recent Posts -->
   <section class="posts-section" id="posts">
@@ -911,7 +895,9 @@
       + '<span style="color:var(--border);">|</span>'
       + '<a href="' + TALENT.sns.tiktok.url + '" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.3em;color:inherit;text-decoration:none;margin-left:0.8em;">'
       + '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.26 8.26 0 0 0 4.83 1.54V6.77a4.85 4.85 0 0 1-1.06-.08z"/></svg>'
-      + ' TikTok ' + TALENT.sns.tiktok.handle + '</a>';
+      + ' TikTok ' + TALENT.sns.tiktok.handle + '</a>'
+      + '<span style="color:var(--border);">|</span>'
+      + '<a href="https://youtube.com/channel/UC2xfiyooiaZVqJk5L1rtNuA" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.3em;color:inherit;text-decoration:none;margin-left:0.8em;">YouTube</a>';
     document.getElementById('hero-tagline').textContent = TALENT.taglineJa;
     document.getElementById('hero-instagram-followers').textContent = TALENT.sns.instagram.followers;
     document.getElementById('hero-tiktok-followers').textContent = TALENT.sns.tiktok.followers;
@@ -927,7 +913,6 @@
       { label: 'Language',   value: '日本語 / English' },
       { label: 'Instagram',  value: TALENT.sns.instagram.handle },
       { label: 'TikTok',     value: TALENT.sns.tiktok.handle },
-      { label: 'X / Twitter',value: TALENT.sns.x.handle },
     ];
     const factsEl = document.getElementById('profile-facts');
     factsData.forEach(f => {
@@ -944,44 +929,6 @@
       tag.textContent = s.label;
       strengthsList.appendChild(tag);
     });
-
-    const snsGrid = document.getElementById('sns-grid');
-    const snsData = [
-      {
-        platform: 'Instagram',
-        handle: TALENT.sns.instagram.handle,
-        url: TALENT.sns.instagram.url,
-        metrics: [
-          { num: TALENT.sns.instagram.followers, label: 'Followers' },
-          { num: TALENT.sns.instagram.engRate,   label: 'Engagement' },
-          { num: TALENT.sns.instagram.avgLikes,  label: 'Avg. Likes' },
-        ]
-      },
-      {
-        platform: 'TikTok',
-        handle: TALENT.sns.tiktok.handle,
-        url: TALENT.sns.tiktok.url,
-        metrics: [
-          { num: TALENT.sns.tiktok.followers, label: 'Followers' },
-        ]
-      },
-    ];
-    snsData.forEach(platform => {
-      const card = document.createElement('div');
-      card.className = 'sns-card';
-      const metricsHTML = platform.metrics.map(m =>
-        `<div class="metric"><div class="metric-num">${m.num}</div><div class="metric-label">${m.label}</div></div>`
-      ).join('');
-      card.innerHTML = `
-        <div class="sns-platform">${platform.platform}</div>
-        <div class="sns-handle">${platform.handle}</div>
-        <div class="sns-metrics">${metricsHTML}</div>
-      `;
-      card.addEventListener('click', () => window.open(platform.url, '_blank'));
-      snsGrid.appendChild(card);
-    });
-
-    document.getElementById('sns-total-num').textContent = TALENT.totalFollowers;
 
     const genreTags = document.getElementById('genre-tags');
     TALENT.genres.forEach((g, i) => {
