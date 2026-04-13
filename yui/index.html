@@ -37,11 +37,11 @@
     },
     totalFollowers: "244,000+",
     recentPosts: [
-      { type: "REEL", thumb: "https://scontent-nrt1-2.cdninstagram.com/v/t51.82787-15/669803133_18096526838516315_2425547294585931260_n.jpg?stp=c0.280.720.720a_dst-jpg_e15_s150x150_tt6&_nc_cat=102&ig_cache_key=Mzg3NDMxNDM0NjIzNTE4MTI0MzE4MDk2NTI2ODMyNTE2MzE1.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjcyMHgxMjgwLnNkci5DMyJ9&_nc_ohc=vnj3_SMMiu8Q7kNvwGrMV5G&_nc_oc=AdpiaxINPyL-MXsYZNGh2gcu2qAwVmy-aA1r0Fwiyw26Sz0hoKg9IwwJ7a7oD420W9qK6mMJPRMr6fsXZlW0xWTT&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-nrt1-2.cdninstagram.com&_nc_gid=xFq8YHLUVz2bMBiOCcOcBQ&_nc_ss=7a32e&oh=00_AfxiS2RoKqHJL8-iQ7FQXH8o98R8Qe3KhRfwrPDUBfBdQg&oe=69D9B29A", likes: 2803, comments: 40, url: "https://www.instagram.com/reel/DX-9B3LMZVo/" },
-      { type: "CAROUSEL", thumb: "", likes: 7910, comments: 52, url: "https://www.instagram.com/p/DX7JFr5yXMF/" },
-      { type: "CAROUSEL", thumb: "", likes: 4769, comments: 28, url: "https://www.instagram.com/p/DX2lOJ5yfSW/" },
-      { type: "CAROUSEL", thumb: "", likes: 5446, comments: 80, url: "https://www.instagram.com/p/DXzEIu6y3lV/" },
-      { type: "CAROUSEL", thumb: "", likes: 4058, comments: 70, url: "https://www.instagram.com/p/DXvhIPDy2Bt/" },
+      { type: "REEL",     thumb: "", likes: 2803,  comments: 40, url: "https://www.instagram.com/reel/DX-9B3LMZVo/" },
+      { type: "CAROUSEL", thumb: "", likes: 7910,  comments: 52, url: "https://www.instagram.com/p/DX7JFr5yXMF/" },
+      { type: "CAROUSEL", thumb: "", likes: 4769,  comments: 28, url: "https://www.instagram.com/p/DX2lOJ5yfSW/" },
+      { type: "CAROUSEL", thumb: "", likes: 5446,  comments: 80, url: "https://www.instagram.com/p/DXzEIu6y3lV/" },
+      { type: "CAROUSEL", thumb: "", likes: 4058,  comments: 70, url: "https://www.instagram.com/p/DXvhIPDy2Bt/" },
       { type: "CAROUSEL", thumb: "", likes: 11755, comments: 66, url: "https://www.instagram.com/p/DXsUpbXS8Fp/" },
     ],
     genres: ["トラベル", "ライフスタイル", "フィットネス", "コスメ / メイク", "ファッション"],
@@ -592,7 +592,7 @@
   <!-- NAV -->
   <nav id="nav">
     <div class="nav-logo">Good Vibes Agency</div>
-    <div class="nav-date">Media Kit 2026.04</div>
+    <div class="nav-date" id="nav-date">Media Kit 2026.04</div>
   </nav>
 
   <!-- HERO -->
@@ -622,10 +622,12 @@
           <p class="profile-bio" id="profile-bio"></p>
           <div class="tag-list" id="strengths"></div>
         </div>
-        <div id="profile-facts"></div>
+        <div class="" id="profile-facts"></div>
       </div>
     </div>
   </section>
+
+
 
   <!-- POSTS -->
   <section class="sec alt">
@@ -657,7 +659,7 @@
         <h2 class="sec-title">料金目安</h2>
       </div>
       <div class="pricing-grid">
-        <div>
+        <div class="">
           <p class="pricing-desc">
             記載の金額はあくまで目安です。案件内容・期間・プラットフォームの組み合わせによって変動いたします。詳細はお気軽にお問い合わせください。
           </p>
@@ -692,6 +694,7 @@
 
   <script>
   (function () {
+    // Hero
     document.getElementById('hero-tagline').textContent = TALENT.taglineJa;
 
     const linksEl = document.getElementById('hero-links');
@@ -700,7 +703,8 @@
       { label: 'TikTok',    url: TALENT.sns.tiktok.url,    handle: TALENT.sns.tiktok.handle },
     ].forEach(s => {
       const a = document.createElement('a');
-      a.className = 'hero-link'; a.href = s.url; a.target = '_blank'; a.rel = 'noopener';
+      a.className = 'hero-link';
+      a.href = s.url; a.target = '_blank'; a.rel = 'noopener';
       a.innerHTML = `<span class="hero-link-dot"></span><span style="font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--light)">${s.label}</span> ${s.handle}`;
       linksEl.appendChild(a);
     });
@@ -711,33 +715,34 @@
       { num: TALENT.sns.tiktok.followers,    label: 'TikTok' },
       { num: TALENT.totalFollowers,          label: 'Total Reach' },
     ].forEach(s => {
-      const d = document.createElement('div'); d.className = 'hero-stat';
+      const d = document.createElement('div');
+      d.className = 'hero-stat';
       d.innerHTML = `<div class="hero-stat-num">${s.num}</div><div class="hero-stat-label">${s.label}</div>`;
       statsEl.appendChild(d);
     });
 
+    // Profile
     document.getElementById('profile-bio').textContent = TALENT.bio;
     const str = document.getElementById('strengths');
     TALENT.strengths.forEach(s => {
       const span = document.createElement('span'); span.className = 'tag'; span.textContent = s;
       str.appendChild(span);
     });
-
     const facts = document.getElementById('profile-facts');
     [
       { label: 'Birthday',  val: `${TALENT.birthday}（${TALENT.age}歳）` },
+      { label: 'Height',    val: TALENT.height },
       { label: 'From',      val: TALENT.birthplace },
       { label: 'Language',  val: '日本語' },
       { label: 'Instagram', val: TALENT.sns.instagram.handle },
       { label: 'TikTok',    val: TALENT.sns.tiktok.handle },
-      { label: 'Eng. Rate', val: TALENT.sns.instagram.engRate },
-      { label: 'Avg. Likes',val: TALENT.sns.instagram.avgLikes },
     ].forEach(f => {
       const d = document.createElement('div'); d.className = 'fact-row';
       d.innerHTML = `<span class="fact-label">${f.label}</span><span class="fact-val">${f.val}</span>`;
       facts.appendChild(d);
     });
 
+    // Posts
     const pg = document.getElementById('posts-grid');
     TALENT.recentPosts.forEach(p => {
       const a = document.createElement('a'); a.className = 'post-card';
@@ -751,6 +756,7 @@
       pg.appendChild(a);
     });
 
+    // Genres
     const gl = document.getElementById('genre-list');
     TALENT.genres.forEach((g, i) => {
       const d = document.createElement('div'); d.className = 'genre-row';
@@ -758,6 +764,7 @@
       gl.appendChild(d);
     });
 
+    // Pricing
     const pb = document.getElementById('pricing-body');
     TALENT.pricing.forEach(p => {
       const tr = document.createElement('tr');
@@ -765,14 +772,17 @@
       pb.appendChild(tr);
     });
 
+    // Contact & footer
     document.getElementById('contact-agency').textContent = TALENT.contact.agency;
     document.getElementById('contact-sub').textContent = `Inquiries about ${TALENT.nameJa} / ${TALENT.name}`;
     document.getElementById('contact-email').href = `mailto:${TALENT.contact.email}`;
     document.getElementById('contact-web').href = TALENT.contact.website;
     document.getElementById('footer-l').textContent = `© ${new Date().getFullYear()} ${TALENT.contact.agency}`;
 
+    // Nav scroll
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), { passive: true });
+
   })();
   </script>
 </body>
