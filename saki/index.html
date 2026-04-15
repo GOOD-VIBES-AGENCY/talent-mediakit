@@ -14,13 +14,13 @@
     nameJa:      "沙季",
     handle:      "@saki__kishimoto",
     tagline:     "Lifestyle × Fashion × Beauty Creator",
-    taglineJa:   "元証券OL × 新婚ライフスタイルクリエイター",
+    taglineJa:   "ライフスタイルクリエイター",
     birthday:    "1999.07.11",
     age:         26,
     height:      "158 cm",
     birthplace:  "兵庫県",
     based:       "東京都",
-    bio:         "兵庫県生まれ、東京在住。元野村証券営業、2020年ミスキャンパス関大グランプリ獲得。新婚生活に寄り添った美容・コスメ・衣食の紹介を軸に、リアルで共感度の高いライフスタイルを発信。Instagramサブスク登録者400名超。",
+    bio:         "兵庫県生まれ、東京在住。元野村証券営業、2020年ミスキャンパス関大グランプリ獲得。自身のこ拘りの美容・コスメ・衣食の紹介を軸に、リアルで共感度の高いライフスタイルを発信。Instagramサブスク登録者400名超。",
     photo:       "./saki.jpg",
     sns: {
       instagram: {
@@ -29,11 +29,6 @@
         followers: "62,175",
         engRate:   "1.04%",
         avgLikes:  "647",
-      },
-      tiktok: {
-        handle:    "@saki_kishimoto",
-        url:       "https://www.tiktok.com/@saki_kishimoto",
-        followers: "0",
       },
     },
     totalFollowers: "62,000+",
@@ -45,7 +40,7 @@
       { type: "CAROUSEL", thumb: "https://scontent-nrt6-1.cdninstagram.com/v/t51.82787-15/657487101_18087070166337030_9123702866580570760_n.jpg?stp=c0.240.1440.1440a_dst-jpg_e35_s150x150_tt6&_nc_cat=105&ig_cache_key=Mzg2Nzc5MDEyNjc0NzkxOTM1NQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTkyMC5zZHIuQzMifQ%3D%3D&_nc_ohc=pCPmZwr4vD0Q7kNvwH6pyWc&_nc_oc=Adrii1Lc6xA1PNUuE-6--UDnn_qu4z2nmND5xKR5QqaBL8vklCVotWuP_HLFuQZU4XFc8QfriXimVOe5rtU998WD&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-nrt6-1.cdninstagram.com&_nc_gid=q-wGLpTOVCDc9tkUsLGSjg&_nc_ss=7a32e&oh=00_Af3ZwV9Zkrnjsx47T1CNkQX3oX0YU5hi4tufd2IWrZ7SYw&oe=69E51F4C", likes: 775, comments: 15, url: "https://www.instagram.com/p/DWtKLAjElMk/" },
       { type: "CAROUSEL", thumb: "https://scontent-nrt6-1.cdninstagram.com/v/t51.82787-15/657330200_18086675057337030_4932044102386371349_n.jpg?stp=c0.240.1440.1440a_dst-jpg_e35_s150x150_tt6&_nc_cat=110&ig_cache_key=Mzg2NDkzMDczNDA4NDEyODIzNA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTkyMC5zZHIuQzMifQ%3D%3D&_nc_ohc=7RURN5i0jT8Q7kNvwHB_nsr&_nc_oc=AdoEnTuZIoE2KDDUwMKQLn0Sg3AqmwCS9M-vV61pMw_6w1dhwI1v8nuauC7IrtF6b4Qn7rF--ladOs74S0aww4o9&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent-nrt6-1.cdninstagram.com&_nc_gid=q-wGLpTOVCDc9tkUsLGSjg&_nc_ss=7a32e&oh=00_Af2f4FRv7M6v3yKQJPhcpsQ-MHfn4lW_2YUSMNWiHf8Z9g&oe=69E5040D", likes: 304, comments: 3, url: "https://www.instagram.com/p/DWi_nx1kukO/" },
     ],
-    genres: ["美容 / コスメ", "ライフスタイル", "ファッション", "旅行", "ドラマ / エンタメ"],
+    genres: ["美容 / コスメ", "ライフスタイル", "ファッション", "旅行", "ワークアウト"],
     strengths: ["新婚ライフスタイル", "美容・コスメ", "ファッション", "旅行", "ゴルフ"],
     pricing: [
       { type: "Instagram フィード投稿", price: "¥124,000〜", note: "1投稿" },
@@ -699,7 +694,7 @@
     const linksEl = document.getElementById('hero-links');
     [
       { label: 'Instagram', url: TALENT.sns.instagram.url, handle: TALENT.sns.instagram.handle },
-      { label: 'TikTok',    url: TALENT.sns.tiktok.url,    handle: TALENT.sns.tiktok.handle },
+      
     ].forEach(s => {
       const a = document.createElement('a');
       a.className = 'hero-link';
@@ -711,7 +706,7 @@
     const statsEl = document.getElementById('hero-stats');
     [
       { num: TALENT.sns.instagram.followers, label: 'Instagram' },
-      { num: TALENT.sns.tiktok.followers,    label: 'TikTok' },
+      
       { num: TALENT.totalFollowers,          label: 'Total Reach' },
     ].forEach(s => {
       const d = document.createElement('div');
