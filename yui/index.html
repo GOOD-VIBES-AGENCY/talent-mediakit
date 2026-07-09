@@ -48,8 +48,8 @@
     genres: ["トラベル", "ライフスタイル", "フィットネス", "コスメ / メイク", "ファッション"],
     strengths: ["韓国旅行", "グルメ", "フィットネス", "スポーツウェア", "日常 Vlog"],
     pricing: [
-      { type: "Instagram フィード投稿", price: "¥450,000〜", note: "1投稿" },
-      { type: "Instagram リール", price: "¥600,000〜", note: "1本" },
+      { type: "Instagram フィード投稿", multiplier: 2.0, note: "1投稿" },
+      { type: "Instagram リール",       multiplier: 3.0, note: "1本" },
       { type: "Instagram ストーリーズ", price: "¥225,000〜", note: "1セット" },
       { type: "Instagram 二次利用", price: "¥225,000〜", note: "1ヶ月" },
       { type: "TikTok 投稿",        price: "¥210,000〜", note: "1本" },
@@ -773,9 +773,17 @@
 
     // Pricing
     const pb = document.getElementById('pricing-body');
+    const igFollowers = parseInt(TALENT.sns.instagram.followers.replace(/,/g, ''), 10);
     TALENT.pricing.forEach(p => {
       const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${p.type}</td><td><span class="p-price">${p.price}</span><span class="p-unit">/ ${p.note}</span></td>`;
+      let priceStr;
+      if (p.multiplier !== undefined) {
+        const calc = Math.floor(igFollowers * p.multiplier / 1000) * 1000;
+        priceStr = '¥' + calc.toLocaleString('ja-JP') + '〜';
+      } else {
+        priceStr = p.price;
+      }
+      tr.innerHTML = `<td>${p.type}</td><td><span class="p-price">${priceStr}</span><span class="p-unit">/ ${p.note}</span></td>`;
       pb.appendChild(tr);
     });
 
