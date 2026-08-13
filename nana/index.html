@@ -38,10 +38,10 @@
       youtube: {
         handle:    "@hino.nana11",
         url:       "https://m.youtube.com/@hino.nana11",
-        subscribers: "9,840",
+          subscribers: "10,000",
       },
     },
-    totalFollowers: "110,000+",
+    totalFollowers: "120,000+",
     recentPosts: [
       { type: "CAROUSEL", thumb: "./thumbs/post_01.jpg", likes: 868, comments: 15, url: "https://www.instagram.com/p/DbNofkkEYGc/" },
       { type: "REEL", thumb: "./thumbs/post_02.jpg", likes: 1337, comments: 29, url: "https://www.instagram.com/reel/DbNQolexxwD/" },
@@ -610,9 +610,10 @@
     // Hero stats
     const statsEl = document.getElementById('hero-stats');
     [
-      { num: TALENT.sns.instagram.followers, label: 'Instagram' },
-      { num: TALENT.sns.tiktok.followers,    label: 'TikTok' },
-      { num: TALENT.totalFollowers,          label: 'Total Reach' },
+      { num: TALENT.sns.instagram.followers,   label: 'Instagram' },
+      { num: TALENT.sns.tiktok.followers,      label: 'TikTok' },
+      { num: TALENT.sns.youtube.subscribers,   label: 'YouTube' },
+      { num: TALENT.totalFollowers,            label: 'Total Reach' },
     ].forEach(s => {
       const d = document.createElement('div');
       d.className = 'hero-stat';
