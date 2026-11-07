@@ -86,10 +86,13 @@
       },
       "youtube": {
         "source": "https://m.youtube.com/@hino.nana11",
-        "method": "rounded-display-only",
+        "method": "youtube_public_rounded",
         "public_rounded_label": "1.12万人",
-        "status": "gap",
-        "displayed_count": 10800
+        "display": "1.12万",
+        "nominal_face_value": 11200,
+        "precision": "公開ページの丸め表示。正確な登録者数の整数ではない。合計はこの表示値を千人未満切り捨てした概数。",
+        "status": "approximate",
+        "retrieved_on": "2026-11-07"
       }
     },
     "oto": {
@@ -176,7 +179,5 @@
       }
     }
   },
-  "gaps": [
-    "nana.youtube:rounded-display-only"
-  ]
+  "gaps": []
 }

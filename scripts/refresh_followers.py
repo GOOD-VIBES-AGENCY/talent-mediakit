@@ -98,8 +98,15 @@ def fetch_youtube_count(profile_url):
         if exact is not None:
             return exact, "youtube_public_exact", {}
         rounded = mk.parse_youtube_public_rounded(body, handle)
-        extra = {"public_rounded_label": rounded} if rounded else {}
-        return None, "rounded-display-only", extra
+        if rounded:
+            display = rounded[:-1] if rounded.endswith("人") else rounded
+            return display, "youtube_public_rounded", {
+                "public_rounded_label": rounded,
+                "display": display,
+                "nominal_face_value": mk.amount(display),
+                "precision": "公開ページの丸め表示。正確な登録者数の整数ではない。合計はこの表示値を千人未満切り捨てした概数。",
+            }
+        return None, "rounded-display-only", {}
     return None, f"unavailable:{status}", {}
 
 
@@ -145,6 +152,11 @@ def refresh(root=mk.REPO, write=False, sleep_seconds=0.4):
                 })
                 provenance["gaps"].append(f"{talent}.{platform}:{method}")
                 print(f"GAP {talent} {platform} source={source} ({method})", file=sys.stderr)
+            elif isinstance(count, str):
+                counts[platform] = count
+                measured[platform] = today
+                entry.update({"status": "approximate", "retrieved_on": today})
+                print(f"APPROX {talent} {platform} {count} source={source} method={method}")
             else:
                 counts[platform] = count
                 measured[platform] = today

@@ -33,6 +33,24 @@ def parse_count(text):
     return int(str(text).replace(",", "").replace("+", "").strip())
 
 
+def parse_platform_value(text):
+    """整数はそのまま。『1.12万』は丸め表示の文字列のまま残す。"""
+    raw = str(text).strip()
+    if re.fullmatch(r"[0-9]+(?:\.[0-9]+)?万", raw):
+        return raw
+    return parse_count(raw)
+
+
+def amount(value):
+    """合計用。万の表示は顔の数値（1.12万 → 11200）であり、正確な整数ではない。"""
+    if isinstance(value, str):
+        man = re.fullmatch(r"([0-9]+(?:\.[0-9]+)?)万", value.strip())
+        if man:
+            return int(round(float(man.group(1)) * 10000))
+        return parse_count(value)
+    return int(value)
+
+
 def floor_plus(n):
     """一覧と Total Reach の既存表記。千人未満を切り捨てて '+' を付ける。"""
     floored = (int(n) // 1000) * 1000
@@ -93,7 +111,7 @@ def parse_talent_html(html):
         count = re.search(rf'{field}:\s*"([^"]+)"', body)
         if not count:
             raise ValueError(f"missing {platform}.{field}")
-        result["platforms"][platform] = parse_count(count.group(1))
+        result["platforms"][platform] = parse_platform_value(count.group(1))
         result["handles"][platform] = handle.group(1) if handle else None
         result["urls"][platform] = url.group(1) if url else None
     total = re.search(r'totalFollowers:\s*"([^"]+)"', html)
@@ -128,7 +146,7 @@ def parse_index(html):
 def derived_total(platforms):
     if not platforms:
         raise ValueError("no platforms")
-    return floor_plus(sum(platforms.values()))
+    return floor_plus(sum(amount(value) for value in platforms.values()))
 
 
 def replace_platform_count(html, platform, new_count):
@@ -137,9 +155,10 @@ def replace_platform_count(html, platform, new_count):
     if not match:
         raise ValueError(f"missing {platform} block")
     body = match.group(2)
+    shown = new_count if isinstance(new_count, str) else format_count(new_count)
     new_body, count = re.subn(
         rf'({field}:\s*")[^"]+(")',
-        rf"\g<1>{format_count(new_count)}\2",
+        rf"\g<1>{shown}\2",
         body,
         count=1,
     )
@@ -319,14 +338,18 @@ def consistency_errors(root=REPO, sources=None, provenance=None):
         if provenance:
             records = provenance.get("talents", {}).get(talent, {})
             retrieved_day = str(provenance.get("retrieved_at", ""))[:10]
-            gaps = [name for name, entry in records.items() if entry.get("status") != "updated"]
+            measured_states = {"updated", "approximate"}
+            gaps = [name for name, entry in records.items() if entry.get("status") not in measured_states]
             for platform, entry in records.items():
-                if entry.get("status") == "updated":
+                status = entry.get("status")
+                if status in measured_states:
                     if as_ofs.get(platform) != retrieved_day:
                         errors.append(f"{talent}: {platform} as-of is not the retrieval day")
-                    if parsed["platforms"].get(platform) != entry.get("count"):
-                        errors.append(f"{talent}: {platform} count drifted from provenance")
-                elif platform in as_ofs:
+                if status == "updated" and parsed["platforms"].get(platform) != entry.get("count"):
+                    errors.append(f"{talent}: {platform} count drifted from provenance")
+                if status == "approximate" and parsed["platforms"].get(platform) != entry.get("display"):
+                    errors.append(f"{talent}: {platform} rounded display drifted")
+                if status not in measured_states and platform in as_ofs:
                     errors.append(f"{talent}: estimated as-of on unmeasured {platform}")
             if records and not gaps:
                 if kit_label([retrieved_day]) != label:

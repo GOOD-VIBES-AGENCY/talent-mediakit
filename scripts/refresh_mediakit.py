@@ -22,43 +22,46 @@ HEADERS = {
 }
 
 
-def get_og_image(post_url, retries=2):
-    """Instagram投稿URLからog:imageを取得"""
-    for attempt in range(retries + 1):
-        try:
-            req = urllib.request.Request(post_url, headers=HEADERS)
-            with urllib.request.urlopen(req, timeout=20) as resp:
-                content = resp.read().decode('utf-8', errors='ignore')
-            match = re.search(r'og:image"\s+content="([^"]+)"', content)
-            if match:
-                return html_module.unescape(match.group(1))
-            return None
-        except Exception as e:
-            if attempt < retries:
-                time.sleep(2 ** attempt)
-            else:
-                print(f"  ERROR: {post_url}: {e}", file=sys.stderr)
+def get_og_image(post_url):
+    """投稿ページの og:image を1回だけ取る。拒否されたら迂回も再試行もしない。"""
+    try:
+        req = urllib.request.Request(post_url, headers=HEADERS)
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            if "accounts/login" in resp.geturl():
+                print(f"  REJECTED login: {post_url}", file=sys.stderr)
                 return None
+            content = resp.read().decode('utf-8', errors='ignore')
+        match = re.search(r'og:image"\s+content="([^"]+)"', content)
+        if match:
+            return html_module.unescape(match.group(1))
+        print(f"  MISS no og:image: {post_url}", file=sys.stderr)
+        return None
+    except urllib.error.HTTPError as error:
+        print(f"  REJECTED {error.code}: {post_url}", file=sys.stderr)
+        return None
+    except Exception as error:
+        print(f"  ERROR: {post_url}: {type(error).__name__}", file=sys.stderr)
+        return None
 
 
-def download_image(url, filepath, retries=2):
-    """画像をダウンロード"""
-    for attempt in range(retries + 1):
-        try:
-            req = urllib.request.Request(url, headers={**HEADERS, 'Referer': 'https://www.instagram.com/'})
-            with urllib.request.urlopen(req, timeout=20) as resp:
-                data = resp.read()
-            if len(data) < 500:
-                raise ValueError(f"Too small: {len(data)} bytes")
-            with open(filepath, 'wb') as f:
-                f.write(data)
-            return len(data)
-        except Exception as e:
-            if attempt < retries:
-                time.sleep(2 ** attempt)
-            else:
-                print(f"  ERROR download: {e}", file=sys.stderr)
-                return 0
+def download_image(url, filepath):
+    """画像を1回だけ保存する。4xx/5xx は再試行しない。"""
+    try:
+        req = urllib.request.Request(url, headers={**HEADERS, 'Referer': 'https://www.instagram.com/'})
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = resp.read()
+        if len(data) < 500:
+            print(f"  REJECTED small image: {len(data)} bytes", file=sys.stderr)
+            return 0
+        with open(filepath, 'wb') as f:
+            f.write(data)
+        return len(data)
+    except urllib.error.HTTPError as error:
+        print(f"  REJECTED download {error.code}", file=sys.stderr)
+        return 0
+    except Exception as error:
+        print(f"  ERROR download: {type(error).__name__}", file=sys.stderr)
+        return 0
 
 
 def extract_post_urls(html_content):

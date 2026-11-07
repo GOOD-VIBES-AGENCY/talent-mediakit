@@ -134,6 +134,11 @@ class ParserTests(unittest.TestCase):
     def test_youtube_rounded_man_is_not_an_exact_count(self):
         html = "@hino.nana11 • チャンネル登録者数 1.12万人"
         self.assertIsNone(mk.parse_youtube_exact_subscribers(html, "@hino.nana11"))
+        self.assertEqual(mk.amount("1.12万"), 11200)
+        self.assertEqual(
+            mk.derived_total({"instagram": 68582, "tiktok": 47476, "youtube": "1.12万"}),
+            "127,000+",
+        )
 
     def test_youtube_exact_integer_near_handle_is_accepted(self):
         html = '@hino.nana11","subscriberCount":"11234"'
@@ -188,12 +193,11 @@ class RepoConsistencyTests(unittest.TestCase):
         self.assertNotIn("moo_mo_k", instagram["source"])
         youtube = provenance["talents"]["nana"]["youtube"]
         page = mk.parse_talent_html((ROOT / "nana" / "index.html").read_text(encoding="utf-8"))
-        if youtube["status"] == "gap":
-            self.assertEqual(page["platforms"]["youtube"], youtube["displayed_count"])
-            rounded = youtube.get("public_rounded_label")
-            if rounded:
-                self.assertIn("万", rounded)
-                self.assertNotIn(rounded, (ROOT / "nana" / "index.html").read_text(encoding="utf-8"))
+        self.assertEqual(youtube["status"], "approximate")
+        self.assertEqual(page["platforms"]["youtube"], "1.12万")
+        self.assertNotIn('subscribers: "11,200"', (ROOT / "nana" / "index.html").read_text(encoding="utf-8"))
+        self.assertNotIn('subscribers: "10,800"', (ROOT / "nana" / "index.html").read_text(encoding="utf-8"))
+        self.assertNotIn("nana.youtube", provenance["gaps"])
         self.assertNotIn("web_profile_info", json.dumps(provenance))
         self.assertNotIn("Googlebot", json.dumps(provenance))
 

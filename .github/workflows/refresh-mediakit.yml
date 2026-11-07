@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  refresh-thumbnails:
+  refresh:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -26,38 +26,17 @@ jobs:
         continue-on-error: true
         run: python3 scripts/refresh_mediakit.py
 
-      - name: Commit thumbnail updates
+      - name: Commit thumbnail files that were actually saved
         if: steps.thumbs.outcome == 'success' || steps.thumbs.outcome == 'failure'
         run: |
-          if git diff --quiet; then
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add kanna/thumbs mayu/thumbs miu/thumbs momoka/thumbs nana/thumbs oto/thumbs ririka/thumbs sae/thumbs saki/thumbs yui/thumbs
+          if git diff --cached --quiet; then
             echo "no thumbnail changes"
             exit 0
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add kanna mayu miu momoka nana oto ririka sae saki yui
           git commit -m "fix: サムネイル自動更新 $(date +'%Y-%m-%d')"
-          git push
-
-      - name: Fail if any thumbnail was not refreshed
-        if: steps.thumbs.outcome == 'failure'
-        run: exit 1
-
-  refresh-followers:
-    needs: refresh-thumbnails
-    if: always() && needs.refresh-thumbnails.result != 'cancelled'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
 
       - name: Refresh follower counts from public pages
         id: followers
@@ -67,10 +46,6 @@ jobs:
       - name: Commit verified count updates
         if: steps.followers.outcome == 'success' || steps.followers.outcome == 'failure'
         run: |
-          if git diff --quiet; then
-            echo "no count changes"
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add index.html scripts/count_provenance.json scripts/follower_sources.json
@@ -80,8 +55,10 @@ jobs:
             exit 0
           fi
           git commit -m "fix: フォロワー数の公開ページ反映 $(date +'%Y-%m-%d')"
-          git push
 
-      - name: Fail when a count source was not verified
-        if: steps.followers.outcome == 'failure'
+      - name: Push commits from this checkout
+        run: git push origin "HEAD:${{ github.ref_name }}"
+
+      - name: Fail if a thumbnail or a count was not retrieved
+        if: steps.thumbs.outcome == 'failure' || steps.followers.outcome == 'failure'
         run: exit 1
