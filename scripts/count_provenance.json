@@ -1,0 +1,182 @@
+{
+  "retrieved_at": "2026-11-07T09:28:44+09:00",
+  "user_agent": "GOOD-VIBES-AGENCY-mediakit/1.0 (+https://goodvibesagency.tokyo/talent-mediakit/)",
+  "talents": {
+    "kanna": {
+      "instagram": {
+        "source": "https://instagram.com/k_r__ko",
+        "method": "instagram_public_embed",
+        "profile_page": "login_redirect",
+        "embed_url": "https://www.instagram.com/k_r__ko/embed/",
+        "status": "updated",
+        "count": 172090,
+        "retrieved_on": "2026-11-07"
+      },
+      "tiktok": {
+        "source": "https://www.tiktok.com/@mayoichu",
+        "method": "tiktok_public_page",
+        "status": "updated",
+        "count": 72020,
+        "retrieved_on": "2026-11-07"
+      }
+    },
+    "mayu": {
+      "instagram": {
+        "source": "https://instagram.com/mkmyxi",
+        "method": "instagram_public_embed",
+        "profile_page": "login_redirect",
+        "embed_url": "https://www.instagram.com/mkmyxi/embed/",
+        "status": "updated",
+        "count": 26027,
+        "retrieved_on": "2026-11-07"
+      }
+    },
+    "miu": {
+      "instagram": {
+        "source": "https://instagram.com/uruuril",
+        "method": "instagram_public_embed",
+        "profile_page": "login_redirect",
+        "embed_url": "https://www.instagram.com/uruuril/embed/",
+        "status": "updated",
+        "count": 82015,
+        "retrieved_on": "2026-11-07"
+      },
+      "tiktok": {
+        "source": "https://www.tiktok.com/@uruuril",
+        "method": "tiktok_public_page",
+        "status": "updated",
+        "count": 23465,
+        "retrieved_on": "2026-11-07"
+      }
+    },
+    "momoka": {
+      "instagram": {
+        "source": "https://www.instagram.com/momoo_ka_",
+        "method": "instagram_public_embed",
+        "profile_page": "login_redirect",
+        "embed_url": "https://www.instagram.com/momoo_ka_/embed/",
+        "status": "updated",
+        "count": 243866,
+        "retrieved_on": "2026-11-07"
+      },
+      "tiktok": {
+        "source": "https://tiktok.com/@peach12299",
+        "method": "tiktok_public_page",
+        "status": "updated",
+        "count": 348664,
+        "retrieved_on": "2026-11-07"
+      }
+    },
+    "nana": {
+      "instagram": {
+        "source": "https://www.instagram.com/hino.nana11",
+        "method": "instagram_public_embed",
+        "profile_page": "login_redirect",
+        "embed_url": "https://www.instagram.com/hino.nana11/embed/",
+        "status": "updated",
+        "count": 68582,
+        "retrieved_on": "2026-11-07"
+      },
+      "tiktok": {
+        "source": "https://www.tiktok.com/@hino.nana",
+        "method": "tiktok_public_page",
+        "status": "updated",
+        "count": 47476,
+        "retrieved_on": "2026-11-07"
+      },
+      "youtube": {
+        "source": "https://m.youtube.com/@hino.nana11",
+        "method": "rounded-display-only",
+        "public_rounded_label": "1.12万人",
+        "status": "gap",
+        "displayed_count": 10800
+      }
+    },
+    "oto": {
+      "instagram": {
+        "source": "https://instagram.com/_021miu",
+        "method": "instagram_public_embed",
+        "profile_page": "login_redirect",
+        "embed_url": "https://www.instagram.com/_021miu/embed/",
+        "status": "updated",
+        "count": 231473,
+        "retrieved_on": "2026-11-07"
+      },
+      "tiktok": {
+        "source": "https://www.tiktok.com/@_00_3yu",
+        "method": "tiktok_public_page",
+        "status": "updated",
+        "count": 265330,
+        "retrieved_on": "2026-11-07"
+      }
+    },
+    "ririka": {
+      "instagram": {
+        "source": "https://instagram.com/ririka_konishi",
+        "method": "instagram_public_embed",
+        "profile_page": "login_redirect",
+        "embed_url": "https://www.instagram.com/ririka_konishi/embed/",
+        "status": "updated",
+        "count": 76525,
+        "retrieved_on": "2026-11-07"
+      },
+      "tiktok": {
+        "source": "https://www.tiktok.com/@riri_.cony03",
+        "method": "tiktok_public_page",
+        "status": "updated",
+        "count": 110992,
+        "retrieved_on": "2026-11-07"
+      }
+    },
+    "sae": {
+      "instagram": {
+        "source": "https://instagram.com/saeeeoky",
+        "method": "instagram_public_embed",
+        "profile_page": "login_redirect",
+        "embed_url": "https://www.instagram.com/saeeeoky/embed/",
+        "status": "updated",
+        "count": 47139,
+        "retrieved_on": "2026-11-07"
+      },
+      "tiktok": {
+        "source": "https://www.tiktok.com/@saeeoky",
+        "method": "tiktok_public_page",
+        "status": "updated",
+        "count": 7577,
+        "retrieved_on": "2026-11-07"
+      }
+    },
+    "saki": {
+      "instagram": {
+        "source": "https://instagram.com/saki__kishimoto",
+        "method": "instagram_public_embed",
+        "profile_page": "login_redirect",
+        "embed_url": "https://www.instagram.com/saki__kishimoto/embed/",
+        "status": "updated",
+        "count": 63066,
+        "retrieved_on": "2026-11-07"
+      }
+    },
+    "yui": {
+      "instagram": {
+        "source": "https://instagram.com/yui___12.8",
+        "method": "instagram_public_embed",
+        "profile_page": "login_redirect",
+        "embed_url": "https://www.instagram.com/yui___12.8/embed/",
+        "status": "updated",
+        "count": 261175,
+        "retrieved_on": "2026-11-07"
+      },
+      "tiktok": {
+        "source": "https://www.tiktok.com/@yui___12.8",
+        "method": "tiktok_public_page",
+        "status": "updated",
+        "count": 97667,
+        "retrieved_on": "2026-11-07"
+      }
+    }
+  },
+  "gaps": [
+    "nana.youtube:rounded-display-only"
+  ]
+}
