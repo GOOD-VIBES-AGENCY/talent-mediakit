@@ -16,7 +16,7 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TALENTS = ["kanna", "mayu", "miu", "momoka", "oto", "ririka", "sae", "saki", "yui"]
 
 HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+    'User-Agent': 'GOOD-VIBES-AGENCY-mediakit/1.0 (+https://goodvibesagency.tokyo/talent-mediakit/)',
     'Accept': 'text/html,application/xhtml+xml',
     'Accept-Language': 'ja,en;q=0.9',
 }

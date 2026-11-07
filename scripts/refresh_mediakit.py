@@ -10,63 +10,58 @@ import time
 import urllib.request
 import urllib.error
 import html as html_module
-import json
 from datetime import datetime
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TALENTS = ["kanna", "mayu", "miu", "momoka", "nana", "oto", "ririka", "sae", "saki", "yui"]
 
 HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+    'User-Agent': 'GOOD-VIBES-AGENCY-mediakit/1.0 (+https://goodvibesagency.tokyo/talent-mediakit/)',
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     'Accept-Language': 'ja,en-US;q=0.9,en;q=0.8',
 }
 
-IG_GRAPHQL_HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1',
-    'X-IG-App-ID': '936619743392459',
-    'X-Requested-With': 'XMLHttpRequest',
-    'Accept': 'application/json',
-}
 
-
-def get_og_image(post_url, retries=2):
-    """Instagram投稿URLからog:imageを取得"""
-    for attempt in range(retries + 1):
-        try:
-            req = urllib.request.Request(post_url, headers=HEADERS)
-            with urllib.request.urlopen(req, timeout=20) as resp:
-                content = resp.read().decode('utf-8', errors='ignore')
-            match = re.search(r'og:image"\s+content="([^"]+)"', content)
-            if match:
-                return html_module.unescape(match.group(1))
-            return None
-        except Exception as e:
-            if attempt < retries:
-                time.sleep(2 ** attempt)
-            else:
-                print(f"  ERROR: {post_url}: {e}", file=sys.stderr)
+def get_og_image(post_url):
+    """投稿ページの og:image を1回だけ取る。拒否されたら迂回も再試行もしない。"""
+    try:
+        req = urllib.request.Request(post_url, headers=HEADERS)
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            if "accounts/login" in resp.geturl():
+                print(f"  REJECTED login: {post_url}", file=sys.stderr)
                 return None
+            content = resp.read().decode('utf-8', errors='ignore')
+        match = re.search(r'og:image"\s+content="([^"]+)"', content)
+        if match:
+            return html_module.unescape(match.group(1))
+        print(f"  MISS no og:image: {post_url}", file=sys.stderr)
+        return None
+    except urllib.error.HTTPError as error:
+        print(f"  REJECTED {error.code}: {post_url}", file=sys.stderr)
+        return None
+    except Exception as error:
+        print(f"  ERROR: {post_url}: {type(error).__name__}", file=sys.stderr)
+        return None
 
 
-def download_image(url, filepath, retries=2):
-    """画像をダウンロード"""
-    for attempt in range(retries + 1):
-        try:
-            req = urllib.request.Request(url, headers={**HEADERS, 'Referer': 'https://www.instagram.com/'})
-            with urllib.request.urlopen(req, timeout=20) as resp:
-                data = resp.read()
-            if len(data) < 500:
-                raise ValueError(f"Too small: {len(data)} bytes")
-            with open(filepath, 'wb') as f:
-                f.write(data)
-            return len(data)
-        except Exception as e:
-            if attempt < retries:
-                time.sleep(2 ** attempt)
-            else:
-                print(f"  ERROR download: {e}", file=sys.stderr)
-                return 0
+def download_image(url, filepath):
+    """画像を1回だけ保存する。4xx/5xx は再試行しない。"""
+    try:
+        req = urllib.request.Request(url, headers={**HEADERS, 'Referer': 'https://www.instagram.com/'})
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = resp.read()
+        if len(data) < 500:
+            print(f"  REJECTED small image: {len(data)} bytes", file=sys.stderr)
+            return 0
+        with open(filepath, 'wb') as f:
+            f.write(data)
+        return len(data)
+    except urllib.error.HTTPError as error:
+        print(f"  REJECTED download {error.code}", file=sys.stderr)
+        return 0
+    except Exception as error:
+        print(f"  ERROR download: {type(error).__name__}", file=sys.stderr)
+        return 0
 
 
 def extract_post_urls(html_content):
@@ -95,31 +90,6 @@ def update_html_thumbs(html_path, count):
     return thumb_idx
 
 
-def get_nana_posts_from_api():
-    """nana(@hino.nana11)の最新投稿をInstagram APIから取得"""
-    try:
-        req = urllib.request.Request(
-            "https://www.instagram.com/api/v1/users/web_profile_info/?username=hino.nana11",
-            headers=IG_GRAPHQL_HEADERS
-        )
-        with urllib.request.urlopen(req, timeout=20) as resp:
-            data = json.loads(resp.read().decode('utf-8'))
-        media = data['data']['user']['edge_owner_to_timeline_media']['edges']
-        posts = []
-        for m in media[:6]:
-            node = m['node']
-            sc = node.get('shortcode', '')
-            type_map = {'GraphVideo': 'REEL', 'GraphImage': 'IMAGE', 'GraphSidecar': 'CAROUSEL'}
-            ptype = type_map.get(node.get('__typename', ''), 'IMAGE')
-            likes = node.get('edge_media_preview_like', {}).get('count', 0)
-            comments = node.get('edge_media_to_comment', {}).get('count', 0)
-            posts.append((ptype, likes, comments, f"https://www.instagram.com/p/{sc}/"))
-        return posts
-    except Exception as e:
-        print(f"  WARNING: nana API error: {e}", file=sys.stderr)
-        return []
-
-
 def process_talent(talent):
     html_path = os.path.join(REPO, talent, 'index.html')
     thumbs_dir = os.path.join(REPO, talent, 'thumbs')
@@ -135,10 +105,7 @@ def process_talent(talent):
     
     post_urls = extract_post_urls(content)
     print(f"\n=== {talent}: {len(post_urls)} posts ===")
-    
-    if not post_urls and talent == 'nana':
-        return process_nana_new(html_path, thumbs_dir, content)
-    
+
     if not post_urls:
         print(f"  WARNING: no post URLs")
         return 0, 0
@@ -165,33 +132,12 @@ def process_talent(talent):
     return success, len(post_urls)
 
 
-def process_nana_new(html_path, thumbs_dir, content):
-    """nanaのHTML更新（投稿URLなし → APIから取得）"""
-    print("  nana: APIから取得中...")
-    posts = get_nana_posts_from_api()
-    if not posts:
-        return 0, 0
-    
-    success = 0
-    entries = []
-    for i, (ptype, likes, comments, url) in enumerate(posts, 1):
-        og_url = get_og_image(url)
-        if og_url:
-            fpath = os.path.join(thumbs_dir, f"post_{i:02d}.jpg")
-            size = download_image(og_url, fpath)
-            if size > 0:
-                print(f"  [{i}] OK -> post_{i:02d}.jpg ({size:,}b)")
-                entries.append(f'      {{ type: "{ptype}", thumb: "./thumbs/post_{i:02d}.jpg", likes: {likes}, comments: {comments}, url: "{url}" }}')
-                success += 1
-        time.sleep(1.5)
-    
-    if entries:
-        new_content = content.replace('recentPosts: []', f'recentPosts: [\n' + ',\n'.join(entries) + '\n    ]')
-        with open(html_path, 'w', encoding='utf-8') as f:
-            f.write(new_content)
-        print(f"  nana HTML: {success} posts added")
-    
-    return success, len(posts)
+def exit_code_for_results(results):
+    """1件でも欠ける、または投稿が0件なら失敗。一部成功だけでは成功にしない。"""
+    for ok, total in results.values():
+        if total <= 0 or ok != total:
+            return 1
+    return 0
 
 
 if __name__ == "__main__":
@@ -217,5 +163,6 @@ if __name__ == "__main__":
         s = "✅" if ok == total and total > 0 else "⚠️" if ok > 0 else "❌"
         print(f"{s} {talent}: {ok}/{total}")
     print(f"合計: {total_ok}/{total_all}")
-    if total_ok == 0:
+    if exit_code_for_results(results):
+        print("FAILED: incomplete thumbnail refresh", file=sys.stderr)
         sys.exit(1)
