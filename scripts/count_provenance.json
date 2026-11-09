@@ -1,15 +1,16 @@
 {
-  "retrieved_at": "2026-11-09T14:51:57+09:00",
+  "retrieved_at": "2026-11-09T15:48:01+09:00",
   "user_agent": "GOOD-VIBES-AGENCY-mediakit/1.0 (+https://goodvibesagency.tokyo/talent-mediakit/)",
   "talents": {
     "kanna": {
       "instagram": {
         "source": "https://instagram.com/k_r__ko",
-        "method": "unavailable",
+        "method": "instagram_public_embed",
         "profile_page": "login_redirect",
-        "embed_status": 200,
-        "status": "gap",
-        "displayed_count": 172090
+        "embed_url": "https://www.instagram.com/k_r__ko/embed/",
+        "status": "updated",
+        "count": 172034,
+        "retrieved_on": "2026-11-09"
       },
       "tiktok": {
         "source": "https://www.tiktok.com/@mayoichu",
@@ -22,21 +23,23 @@
     "mayu": {
       "instagram": {
         "source": "https://instagram.com/mkmyxi",
-        "method": "unavailable",
+        "method": "instagram_public_embed",
         "profile_page": "login_redirect",
-        "embed_status": 200,
-        "status": "gap",
-        "displayed_count": 26027
+        "embed_url": "https://www.instagram.com/mkmyxi/embed/",
+        "status": "updated",
+        "count": 26041,
+        "retrieved_on": "2026-11-09"
       }
     },
     "miu": {
       "instagram": {
         "source": "https://instagram.com/uruuril",
-        "method": "unavailable",
+        "method": "instagram_public_embed",
         "profile_page": "login_redirect",
-        "embed_status": 200,
-        "status": "gap",
-        "displayed_count": 82015
+        "embed_url": "https://www.instagram.com/uruuril/embed/",
+        "status": "updated",
+        "count": 82011,
+        "retrieved_on": "2026-11-09"
       },
       "tiktok": {
         "source": "https://www.tiktok.com/@uruuril",
@@ -49,11 +52,12 @@
     "momoka": {
       "instagram": {
         "source": "https://www.instagram.com/momoo_ka_",
-        "method": "unavailable",
+        "method": "instagram_public_embed",
         "profile_page": "login_redirect",
-        "embed_status": 200,
-        "status": "gap",
-        "displayed_count": 243866
+        "embed_url": "https://www.instagram.com/momoo_ka_/embed/",
+        "status": "updated",
+        "count": 243856,
+        "retrieved_on": "2026-11-09"
       },
       "tiktok": {
         "source": "https://tiktok.com/@peach12299",
@@ -66,11 +70,12 @@
     "nana": {
       "instagram": {
         "source": "https://www.instagram.com/hino.nana11",
-        "method": "unavailable",
+        "method": "instagram_public_embed",
         "profile_page": "login_redirect",
-        "embed_status": 200,
-        "status": "gap",
-        "displayed_count": 68582
+        "embed_url": "https://www.instagram.com/hino.nana11/embed/",
+        "status": "updated",
+        "count": 68704,
+        "retrieved_on": "2026-11-09"
       },
       "tiktok": {
         "source": "https://www.tiktok.com/@hino.nana",
@@ -93,11 +98,12 @@
     "oto": {
       "instagram": {
         "source": "https://instagram.com/_021miu",
-        "method": "unavailable",
+        "method": "instagram_public_embed",
         "profile_page": "login_redirect",
-        "embed_status": 200,
-        "status": "gap",
-        "displayed_count": 231473
+        "embed_url": "https://www.instagram.com/_021miu/embed/",
+        "status": "updated",
+        "count": 231425,
+        "retrieved_on": "2026-11-09"
       },
       "tiktok": {
         "source": "https://www.tiktok.com/@_00_3yu",
@@ -110,11 +116,12 @@
     "ririka": {
       "instagram": {
         "source": "https://instagram.com/ririka_konishi",
-        "method": "unavailable",
+        "method": "instagram_public_embed",
         "profile_page": "login_redirect",
-        "embed_status": 200,
-        "status": "gap",
-        "displayed_count": 76525
+        "embed_url": "https://www.instagram.com/ririka_konishi/embed/",
+        "status": "updated",
+        "count": 76504,
+        "retrieved_on": "2026-11-09"
       },
       "tiktok": {
         "source": "https://www.tiktok.com/@riri_.cony03",
@@ -127,11 +134,12 @@
     "sae": {
       "instagram": {
         "source": "https://instagram.com/saeeeoky",
-        "method": "unavailable",
+        "method": "instagram_public_embed",
         "profile_page": "login_redirect",
-        "embed_status": 200,
-        "status": "gap",
-        "displayed_count": 47139
+        "embed_url": "https://www.instagram.com/saeeeoky/embed/",
+        "status": "updated",
+        "count": 47537,
+        "retrieved_on": "2026-11-09"
       },
       "tiktok": {
         "source": "https://www.tiktok.com/@saeeoky",
@@ -144,21 +152,23 @@
     "saki": {
       "instagram": {
         "source": "https://instagram.com/saki__kishimoto",
-        "method": "unavailable",
+        "method": "instagram_public_embed",
         "profile_page": "login_redirect",
-        "embed_status": 200,
-        "status": "gap",
-        "displayed_count": 63066
+        "embed_url": "https://www.instagram.com/saki__kishimoto/embed/",
+        "status": "updated",
+        "count": 63039,
+        "retrieved_on": "2026-11-09"
       }
     },
     "yui": {
       "instagram": {
         "source": "https://instagram.com/yui___12.8",
-        "method": "unavailable",
+        "method": "instagram_public_embed",
         "profile_page": "login_redirect",
-        "embed_status": 200,
-        "status": "gap",
-        "displayed_count": 261175
+        "embed_url": "https://www.instagram.com/yui___12.8/embed/",
+        "status": "updated",
+        "count": 261703,
+        "retrieved_on": "2026-11-09"
       },
       "tiktok": {
         "source": "https://www.tiktok.com/@yui___12.8",
@@ -169,16 +179,5 @@
       }
     }
   },
-  "gaps": [
-    "kanna.instagram:unavailable",
-    "mayu.instagram:unavailable",
-    "miu.instagram:unavailable",
-    "momoka.instagram:unavailable",
-    "nana.instagram:unavailable",
-    "oto.instagram:unavailable",
-    "ririka.instagram:unavailable",
-    "sae.instagram:unavailable",
-    "saki.instagram:unavailable",
-    "yui.instagram:unavailable"
-  ]
+  "gaps": []
 }
