@@ -132,6 +132,12 @@ def platforms_to_fetch(present, skip=None, only=None):
 
 def refresh(root=mk.REPO, write=False, sleep_seconds=0.4, skip=None, only=None):
     sources = mk.load_sources()
+    prior = {}
+    if mk.PROVENANCE_PATH.exists():
+        try:
+            prior = json.loads(mk.PROVENANCE_PATH.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            prior = {}
     today = now_jst().date().isoformat()
     retrieved_at = now_jst().isoformat(timespec="seconds")
     provenance = {
@@ -158,12 +164,16 @@ def refresh(root=mk.REPO, write=False, sleep_seconds=0.4, skip=None, only=None):
             else:
                 source = parsed["urls"][platform]
             if platform not in selected:
-                talent_record[platform] = {
-                    "source": source,
-                    "method": "skipped",
-                    "status": "skipped",
-                    "displayed_count": counts[platform],
-                }
+                previous = prior.get("talents", {}).get(talent, {}).get(platform)
+                if previous:
+                    talent_record[platform] = previous
+                else:
+                    talent_record[platform] = {
+                        "source": source,
+                        "method": "skipped",
+                        "status": "skipped",
+                        "displayed_count": counts[platform],
+                    }
                 print(f"SKIP {talent} {platform} (not requested)")
                 continue
             count, method, extra = FETCHERS[platform](source)

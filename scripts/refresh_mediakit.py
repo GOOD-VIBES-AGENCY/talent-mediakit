@@ -178,10 +178,11 @@ if __name__ == "__main__":
     elapsed = (datetime.now() - start).total_seconds()
     print(f"\n{'='*40}")
     print(f"完了 ({elapsed:.0f}秒)")
-    total_ok = sum(ok for ok, _ in results.values())
-    total_all = sum(t for _, t in results.values())
-    for talent, (ok, total) in results.items():
-        s = "✅" if ok == total and total > 0 else "⚠️" if ok > 0 else "❌"
+    total_ok = sum(item[0] for item in results.values())
+    total_all = sum(item[1] for item in results.values())
+    for talent, item in results.items():
+        ok, total, unexpected = item
+        s = "✅" if unexpected == 0 and total > 0 else "⚠️" if ok > 0 else "❌"
         print(f"{s} {talent}: {ok}/{total}")
     print(f"合計: {total_ok}/{total_all}")
     if exit_code_for_results(results):
