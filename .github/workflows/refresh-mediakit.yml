@@ -2,8 +2,8 @@ name: Refresh Mediakit
 
 on:
   schedule:
-    # 毎週月曜 09:00 JST (= 00:00 UTC)
-    - cron: '0 0 * * 1'
+    # 毎週月曜 10:17 JST (= 01:17 UTC)。毎時0分は Actions の遅れやすい時刻なので避ける。
+    - cron: '17 1 * * 1'
   workflow_dispatch:
 
 jobs:
