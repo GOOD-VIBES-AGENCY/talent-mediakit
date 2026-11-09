@@ -161,6 +161,26 @@ class AccessMethodTests(unittest.TestCase):
                 self.assertNotIn(token, text, f"{relative} contains {token}")
 
 
+class WorkflowScopeTests(unittest.TestCase):
+    def test_actions_does_not_fetch_instagram(self):
+        workflow = (ROOT / ".github/workflows/refresh-mediakit.yml").read_text(encoding="utf-8")
+        self.assertIn("--skip-instagram", workflow)
+        self.assertNotIn("refresh_mediakit.py", workflow)
+        self.assertNotIn("0 0 * * 1", workflow)
+
+    def test_platform_selection_skips_instagram_without_dropping_others(self):
+        import refresh_followers
+        present = ["instagram", "tiktok", "youtube"]
+        self.assertEqual(
+            refresh_followers.platforms_to_fetch(present, skip=["instagram"]),
+            ["tiktok", "youtube"],
+        )
+        self.assertEqual(
+            refresh_followers.platforms_to_fetch(present, only=["instagram"]),
+            ["instagram"],
+        )
+
+
 class ThumbnailFailureTests(unittest.TestCase):
     def test_known_thumb_misses_do_not_fail_the_job(self):
         self.assertTrue(refresh_mediakit.is_known_thumb_miss("https://www.instagram.com/reel/DdEBSSdq0oY/"))

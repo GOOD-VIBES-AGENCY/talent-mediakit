@@ -341,9 +341,14 @@ def consistency_errors(root=REPO, sources=None, provenance=None):
             records = provenance.get("talents", {}).get(talent, {})
             retrieved_day = str(provenance.get("retrieved_at", ""))[:10]
             measured_states = {"updated", "approximate"}
-            gaps = [name for name, entry in records.items() if entry.get("status") not in measured_states]
+            gaps = [
+                name for name, entry in records.items()
+                if entry.get("status") not in measured_states and entry.get("status") != "skipped"
+            ]
             for platform, entry in records.items():
                 status = entry.get("status")
+                if status == "skipped":
+                    continue
                 if status in measured_states:
                     if as_ofs.get(platform) != retrieved_day:
                         errors.append(f"{talent}: {platform} as-of is not the retrieval day")
@@ -351,7 +356,7 @@ def consistency_errors(root=REPO, sources=None, provenance=None):
                     errors.append(f"{talent}: {platform} count drifted from provenance")
                 if status == "approximate" and parsed["platforms"].get(platform) != entry.get("display"):
                     errors.append(f"{talent}: {platform} rounded display drifted")
-                if status not in measured_states and as_ofs.get(platform) == retrieved_day:
+                if status == "gap" and as_ofs.get(platform) == retrieved_day:
                     errors.append(f"{talent}: unmeasured {platform} stamped with this run")
             if as_ofs and set(parsed["platforms"]) <= set(as_ofs):
                 if kit_label(as_ofs.values()) != label:
