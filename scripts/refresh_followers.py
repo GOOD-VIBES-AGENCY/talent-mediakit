@@ -117,8 +117,27 @@ FETCHERS = {
 }
 
 
-def refresh(root=mk.REPO, write=False, sleep_seconds=0.4):
+def platforms_to_fetch(present, skip=None, only=None):
+    """skip と only の両方があるときは skip を優先する。"""
+    skip = set(skip or [])
+    chosen = []
+    for name in present:
+        if name in skip:
+            continue
+        if only is not None and name not in only:
+            continue
+        chosen.append(name)
+    return chosen
+
+
+def refresh(root=mk.REPO, write=False, sleep_seconds=0.4, skip=None, only=None):
     sources = mk.load_sources()
+    prior = {}
+    if mk.PROVENANCE_PATH.exists():
+        try:
+            prior = json.loads(mk.PROVENANCE_PATH.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            prior = {}
     today = now_jst().date().isoformat()
     retrieved_at = now_jst().isoformat(timespec="seconds")
     provenance = {
@@ -137,12 +156,26 @@ def refresh(root=mk.REPO, write=False, sleep_seconds=0.4):
         counts = dict(parsed["platforms"])
         measured = {}
         talent_record = {}
+        selected = set(platforms_to_fetch(counts, skip, only))
 
         for platform in list(counts):
             if platform == "instagram":
                 source = mk.resolve_instagram_source(talent, parsed["urls"]["instagram"], sources)
             else:
                 source = parsed["urls"][platform]
+            if platform not in selected:
+                previous = prior.get("talents", {}).get(talent, {}).get(platform)
+                if previous:
+                    talent_record[platform] = previous
+                else:
+                    talent_record[platform] = {
+                        "source": source,
+                        "method": "skipped",
+                        "status": "skipped",
+                        "displayed_count": counts[platform],
+                    }
+                print(f"SKIP {talent} {platform} (not requested)")
+                continue
             count, method, extra = FETCHERS[platform](source)
             entry = {"source": source, "method": method, **extra}
             if count is None:
@@ -192,7 +225,11 @@ def refresh(root=mk.REPO, write=False, sleep_seconds=0.4):
 
 def main(argv):
     write = "--write" in argv
-    provenance = refresh(write=write)
+    skip = ["instagram"] if "--skip-instagram" in argv else []
+    only = None
+    if "--only" in argv:
+        only = argv[argv.index("--only") + 1].split(",")
+    provenance = refresh(write=write, skip=skip, only=only)
     if provenance["gaps"]:
         return 1
     return 0

@@ -15,6 +15,20 @@ from datetime import datetime
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TALENTS = ["kanna", "mayu", "miu", "momoka", "nana", "oto", "ririka", "sae", "saki", "yui"]
 
+# 徹さん確認済み。og:image が無くても既存サムネイルを残し、これだけでは失敗にしない。
+KNOWN_THUMB_MISSES = {
+    "https://www.instagram.com/reel/DdEBSSdq0oY",  # 酒巻茉侑 4枚目
+    "https://www.instagram.com/p/Dbf6Nw0GldW",  # 乙 3枚目
+}
+
+
+def canonical_post_url(url):
+    return url.split("?")[0].rstrip("/")
+
+
+def is_known_thumb_miss(url):
+    return canonical_post_url(url) in KNOWN_THUMB_MISSES
+
 HEADERS = {
     'User-Agent': 'GOOD-VIBES-AGENCY-mediakit/1.0 (+https://goodvibesagency.tokyo/talent-mediakit/)',
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -111,6 +125,7 @@ def process_talent(talent):
         return 0, 0
     
     success = 0
+    unexpected = 0
     for i, url in enumerate(post_urls, 1):
         og_url = get_og_image(url)
         if og_url:
@@ -121,21 +136,27 @@ def process_talent(talent):
                 success += 1
             else:
                 print(f"  [{i}] FAIL: download")
+                unexpected += 1
+        elif is_known_thumb_miss(url):
+            print(f"  [{i}] KEEP existing thumb (known miss)")
         else:
             print(f"  [{i}] SKIP: no og:image")
+            unexpected += 1
         time.sleep(1.5)
     
     if has_cdn and success > 0:
         replaced = update_html_thumbs(html_path, success)
         print(f"  HTML: {replaced} CDN URLs -> relative paths")
     
-    return success, len(post_urls)
+    return success, len(post_urls), unexpected
 
 
 def exit_code_for_results(results):
-    """1件でも欠ける、または投稿が0件なら失敗。一部成功だけでは成功にしない。"""
-    for ok, total in results.values():
-        if total <= 0 or ok != total:
+    """既知の2枚以外が欠ける、または投稿が0件なら失敗。"""
+    for item in results.values():
+        ok, total = item[0], item[1]
+        unexpected = item[2] if len(item) > 2 else total - ok
+        if total <= 0 or unexpected > 0:
             return 1
     return 0
 
@@ -147,8 +168,8 @@ if __name__ == "__main__":
     results = {}
     for talent in TALENTS:
         try:
-            ok, total = process_talent(talent)
-            results[talent] = (ok, total)
+            ok, total, unexpected = process_talent(talent)
+            results[talent] = (ok, total, unexpected)
         except Exception as e:
             print(f"\n=== {talent}: ERROR: {e} ===")
             import traceback; traceback.print_exc()
@@ -157,10 +178,11 @@ if __name__ == "__main__":
     elapsed = (datetime.now() - start).total_seconds()
     print(f"\n{'='*40}")
     print(f"完了 ({elapsed:.0f}秒)")
-    total_ok = sum(ok for ok, _ in results.values())
-    total_all = sum(t for _, t in results.values())
-    for talent, (ok, total) in results.items():
-        s = "✅" if ok == total and total > 0 else "⚠️" if ok > 0 else "❌"
+    total_ok = sum(item[0] for item in results.values())
+    total_all = sum(item[1] for item in results.values())
+    for talent, item in results.items():
+        ok, total, unexpected = item
+        s = "✅" if unexpected == 0 and total > 0 else "⚠️" if ok > 0 else "❌"
         print(f"{s} {talent}: {ok}/{total}")
     print(f"合計: {total_ok}/{total_all}")
     if exit_code_for_results(results):

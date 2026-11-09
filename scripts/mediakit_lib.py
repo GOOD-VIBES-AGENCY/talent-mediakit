@@ -184,12 +184,14 @@ def nav_label(nav_html):
     return match.group(1) if match else None
 
 
-def render_nav_date(existing_label, platforms, measured_as_ofs):
-    """実測できた欄だけ日付属性を付ける。未計測が残るページの表示月は変えない。"""
-    ordered = [name for name in ("instagram", "tiktok", "youtube") if name in measured_as_ofs]
-    attrs = " ".join(f'data-{name}-as-of="{measured_as_ofs[name]}"' for name in ordered)
-    complete = set(platforms) <= set(measured_as_ofs)
-    label = kit_label([measured_as_ofs[name] for name in platforms]) if complete else existing_label
+def render_nav_date(existing_label, platforms, measured_as_ofs, preserved_as_ofs=None):
+    """今回の実測で上書きし、取れなかった欄の既存日付は残す。"""
+    merged = dict(preserved_as_ofs or {})
+    merged.update(measured_as_ofs)
+    ordered = [name for name in ("instagram", "tiktok", "youtube") if name in merged]
+    attrs = " ".join(f'data-{name}-as-of="{merged[name]}"' for name in ordered)
+    complete = set(platforms) <= set(merged)
+    label = kit_label([merged[name] for name in platforms]) if complete else existing_label
     attr_space = f" {attrs}" if attrs else ""
     return f'<div class="nav-date" id="nav-date"{attr_space}>{label}</div>'
 
@@ -202,7 +204,7 @@ def replace_nav_date(html, platforms, measured_as_ofs):
         raise ValueError("missing nav-date")
     new_html, count = re.subn(
         r'<div class="nav-date" id="nav-date"[^>]*>[^<]*</div>',
-        render_nav_date(existing, platforms, measured_as_ofs),
+        render_nav_date(existing, platforms, measured_as_ofs, nav_as_ofs(html)),
         html,
         count=1,
     )
@@ -339,9 +341,14 @@ def consistency_errors(root=REPO, sources=None, provenance=None):
             records = provenance.get("talents", {}).get(talent, {})
             retrieved_day = str(provenance.get("retrieved_at", ""))[:10]
             measured_states = {"updated", "approximate"}
-            gaps = [name for name, entry in records.items() if entry.get("status") not in measured_states]
+            gaps = [
+                name for name, entry in records.items()
+                if entry.get("status") not in measured_states and entry.get("status") != "skipped"
+            ]
             for platform, entry in records.items():
                 status = entry.get("status")
+                if status == "skipped":
+                    continue
                 if status in measured_states:
                     if as_ofs.get(platform) != retrieved_day:
                         errors.append(f"{talent}: {platform} as-of is not the retrieval day")
@@ -349,12 +356,12 @@ def consistency_errors(root=REPO, sources=None, provenance=None):
                     errors.append(f"{talent}: {platform} count drifted from provenance")
                 if status == "approximate" and parsed["platforms"].get(platform) != entry.get("display"):
                     errors.append(f"{talent}: {platform} rounded display drifted")
-                if status not in measured_states and platform in as_ofs:
-                    errors.append(f"{talent}: estimated as-of on unmeasured {platform}")
-            if records and not gaps:
-                if kit_label([retrieved_day]) != label:
-                    errors.append(f"{talent}: full refresh label {label}")
-            elif records and gaps and label != EXISTING_KIT_LABEL:
+                if status == "gap" and as_ofs.get(platform) == retrieved_day:
+                    errors.append(f"{talent}: unmeasured {platform} stamped with this run")
+            if as_ofs and set(parsed["platforms"]) <= set(as_ofs):
+                if kit_label(as_ofs.values()) != label:
+                    errors.append(f"{talent}: label {label} is not the oldest as-of")
+            elif records and gaps and label != EXISTING_KIT_LABEL and not as_ofs:
                 errors.append(f"{talent}: incomplete refresh relabeled to {label}")
 
     momoka_html = (Path(root) / "momoka" / "index.html").read_text(encoding="utf-8")

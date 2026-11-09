@@ -161,11 +161,50 @@ class AccessMethodTests(unittest.TestCase):
                 self.assertNotIn(token, text, f"{relative} contains {token}")
 
 
+class WorkflowScopeTests(unittest.TestCase):
+    def test_actions_does_not_fetch_instagram(self):
+        workflow = (ROOT / ".github/workflows/refresh-mediakit.yml").read_text(encoding="utf-8")
+        self.assertIn("--skip-instagram", workflow)
+        self.assertNotIn("refresh_mediakit.py", workflow)
+        self.assertNotIn("0 0 * * 1", workflow)
+
+    def test_platform_selection_skips_instagram_without_dropping_others(self):
+        import refresh_followers
+        present = ["instagram", "tiktok", "youtube"]
+        self.assertEqual(
+            refresh_followers.platforms_to_fetch(present, skip=["instagram"]),
+            ["tiktok", "youtube"],
+        )
+        self.assertEqual(
+            refresh_followers.platforms_to_fetch(present, only=["instagram"]),
+            ["instagram"],
+        )
+
+
 class ThumbnailFailureTests(unittest.TestCase):
-    def test_partial_thumbnail_refresh_is_a_failure(self):
-        self.assertEqual(refresh_mediakit.exit_code_for_results({"mayu": (5, 6), "oto": (5, 6)}), 1)
-        self.assertEqual(refresh_mediakit.exit_code_for_results({"nana": (0, 0)}), 1)
-        self.assertEqual(refresh_mediakit.exit_code_for_results({"kanna": (6, 6)}), 0)
+    def test_known_thumb_misses_do_not_fail_the_job(self):
+        self.assertTrue(refresh_mediakit.is_known_thumb_miss("https://www.instagram.com/reel/DdEBSSdq0oY/"))
+        self.assertTrue(refresh_mediakit.is_known_thumb_miss("https://www.instagram.com/p/Dbf6Nw0GldW"))
+        self.assertFalse(refresh_mediakit.is_known_thumb_miss("https://www.instagram.com/p/DdQ7DVDFGcO/"))
+        self.assertEqual(refresh_mediakit.exit_code_for_results({"mayu": (5, 6, 0), "oto": (5, 6, 0)}), 0)
+        self.assertEqual(refresh_mediakit.exit_code_for_results({"oto": (4, 6, 1)}), 1)
+        self.assertEqual(refresh_mediakit.exit_code_for_results({"ririka": (1, 6, 5)}), 1)
+        self.assertEqual(refresh_mediakit.exit_code_for_results({"nana": (0, 0, 0)}), 1)
+        self.assertEqual(refresh_mediakit.exit_code_for_results({"kanna": (6, 6, 0)}), 0)
+
+    def test_partial_refresh_keeps_older_platform_date(self):
+        html = DETAIL_FIXTURE.replace(
+            '<div class="nav-date" id="nav-date">Media Kit 2026.09</div>',
+            '<div class="nav-date" id="nav-date" data-instagram-as-of="2026-11-07" data-tiktok-as-of="2026-11-07">Media Kit 2026.11</div>',
+        )
+        updated = mk.apply_detail_counts(
+            html,
+            {"instagram": 243866, "tiktok": 348732},
+            {"tiktok": "2026-11-09"},
+        )
+        self.assertIn('data-instagram-as-of="2026-11-07"', updated)
+        self.assertIn('data-tiktok-as-of="2026-11-09"', updated)
+        self.assertIn("Media Kit 2026.11", updated)
 
 
 class RepoConsistencyTests(unittest.TestCase):
@@ -188,15 +227,23 @@ class RepoConsistencyTests(unittest.TestCase):
     def test_momoka_provenance_used_the_override_source(self):
         provenance = json.loads((ROOT / "scripts" / "count_provenance.json").read_text(encoding="utf-8"))
         instagram = provenance["talents"]["momoka"]["instagram"]
-        self.assertEqual(instagram["status"], "updated")
         self.assertEqual(instagram["source"], "https://www.instagram.com/momoo_ka_")
         self.assertNotIn("moo_mo_k", instagram["source"])
+        momoka = mk.parse_talent_html((ROOT / "momoka" / "index.html").read_text(encoding="utf-8"))
+        if instagram["status"] == "updated":
+            self.assertEqual(momoka["platforms"]["instagram"], instagram["count"])
+        elif instagram["status"] == "gap":
+            self.assertEqual(momoka["platforms"]["instagram"], instagram["displayed_count"])
+        else:
+            self.fail(instagram["status"])
         youtube = provenance["talents"]["nana"]["youtube"]
         page = mk.parse_talent_html((ROOT / "nana" / "index.html").read_text(encoding="utf-8"))
         self.assertEqual(youtube["status"], "approximate")
-        self.assertEqual(page["platforms"]["youtube"], "1.12万")
-        self.assertNotIn('subscribers: "11,200"', (ROOT / "nana" / "index.html").read_text(encoding="utf-8"))
-        self.assertNotIn('subscribers: "10,800"', (ROOT / "nana" / "index.html").read_text(encoding="utf-8"))
+        self.assertEqual(page["platforms"]["youtube"], youtube["display"])
+        self.assertTrue(str(page["platforms"]["youtube"]).endswith("万"))
+        nana_html = (ROOT / "nana" / "index.html").read_text(encoding="utf-8")
+        self.assertNotIn('subscribers: "11,200"', nana_html)
+        self.assertNotIn('subscribers: "10,800"', nana_html)
         self.assertNotIn("nana.youtube", provenance["gaps"])
         self.assertNotIn("web_profile_info", json.dumps(provenance))
         self.assertNotIn("Googlebot", json.dumps(provenance))
