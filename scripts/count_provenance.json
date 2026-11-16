@@ -1,5 +1,5 @@
 {
-  "retrieved_at": "2026-11-16T10:51:57+09:00",
+  "retrieved_at": "2026-11-16T16:59:50+09:00",
   "user_agent": "GOOD-VIBES-AGENCY-mediakit/1.0 (+https://goodvibesagency.tokyo/talent-mediakit/)",
   "talents": {
     "kanna": {
@@ -16,8 +16,8 @@
         "source": "https://www.tiktok.com/@mayoichu",
         "method": "tiktok_public_page",
         "status": "updated",
-        "count": 72043,
-        "retrieved_on": "2026-11-09"
+        "count": 72096,
+        "retrieved_on": "2026-11-16"
       }
     },
     "mayu": {
@@ -45,8 +45,8 @@
         "source": "https://www.tiktok.com/@uruuril",
         "method": "tiktok_public_page",
         "status": "updated",
-        "count": 23453,
-        "retrieved_on": "2026-11-09"
+        "count": 23419,
+        "retrieved_on": "2026-11-16"
       }
     },
     "momoka": {
@@ -63,8 +63,8 @@
         "source": "https://tiktok.com/@peach12299",
         "method": "tiktok_public_page",
         "status": "updated",
-        "count": 348732,
-        "retrieved_on": "2026-11-09"
+        "count": 349320,
+        "retrieved_on": "2026-11-16"
       }
     },
     "nana": {
@@ -81,8 +81,8 @@
         "source": "https://www.tiktok.com/@hino.nana",
         "method": "tiktok_public_page",
         "status": "updated",
-        "count": 47462,
-        "retrieved_on": "2026-11-09"
+        "count": 47433,
+        "retrieved_on": "2026-11-16"
       },
       "youtube": {
         "source": "https://m.youtube.com/@hino.nana11",
@@ -92,7 +92,7 @@
         "nominal_face_value": 11300,
         "precision": "公開ページの丸め表示。正確な登録者数の整数ではない。合計はこの表示値を千人未満切り捨てした概数。",
         "status": "approximate",
-        "retrieved_on": "2026-11-09"
+        "retrieved_on": "2026-11-16"
       }
     },
     "oto": {
@@ -109,8 +109,8 @@
         "source": "https://www.tiktok.com/@_00_3yu",
         "method": "tiktok_public_page",
         "status": "updated",
-        "count": 265261,
-        "retrieved_on": "2026-11-09"
+        "count": 265130,
+        "retrieved_on": "2026-11-16"
       }
     },
     "ririka": {
@@ -127,8 +127,8 @@
         "source": "https://www.tiktok.com/@riri_.cony03",
         "method": "tiktok_public_page",
         "status": "updated",
-        "count": 110933,
-        "retrieved_on": "2026-11-09"
+        "count": 111136,
+        "retrieved_on": "2026-11-16"
       }
     },
     "sae": {
@@ -145,8 +145,8 @@
         "source": "https://www.tiktok.com/@saeeoky",
         "method": "tiktok_public_page",
         "status": "updated",
-        "count": 7576,
-        "retrieved_on": "2026-11-09"
+        "count": 7577,
+        "retrieved_on": "2026-11-16"
       }
     },
     "saki": {
@@ -174,8 +174,8 @@
         "source": "https://www.tiktok.com/@yui___12.8",
         "method": "tiktok_public_page",
         "status": "updated",
-        "count": 97930,
-        "retrieved_on": "2026-11-09"
+        "count": 98789,
+        "retrieved_on": "2026-11-16"
       }
     }
   },
