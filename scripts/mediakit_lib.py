@@ -350,7 +350,9 @@ def consistency_errors(root=REPO, sources=None, provenance=None):
                 if status == "skipped":
                     continue
                 if status in measured_states:
-                    if as_ofs.get(platform) != retrieved_day:
+                    # 今回触っていない媒体は、前回の retrieved_on とページの日付が一致していればよい。
+                    measured_on = entry.get("retrieved_on") or retrieved_day
+                    if as_ofs.get(platform) != measured_on:
                         errors.append(f"{talent}: {platform} as-of is not the retrieval day")
                 if status == "updated" and parsed["platforms"].get(platform) != entry.get("count"):
                     errors.append(f"{talent}: {platform} count drifted from provenance")
