@@ -1,5 +1,5 @@
 {
-  "retrieved_at": "2026-11-23T10:54:28+09:00",
+  "retrieved_at": "2026-11-23T18:08:06+09:00",
   "user_agent": "GOOD-VIBES-AGENCY-mediakit/1.0 (+https://goodvibesagency.tokyo/talent-mediakit/)",
   "talents": {
     "kanna": {
@@ -16,8 +16,8 @@
         "source": "https://www.tiktok.com/@mayoichu",
         "method": "tiktok_public_page",
         "status": "updated",
-        "count": 72096,
-        "retrieved_on": "2026-11-16"
+        "count": 72321,
+        "retrieved_on": "2026-11-23"
       }
     },
     "mayu": {
@@ -45,8 +45,8 @@
         "source": "https://www.tiktok.com/@uruuril",
         "method": "tiktok_public_page",
         "status": "updated",
-        "count": 23419,
-        "retrieved_on": "2026-11-16"
+        "count": 23400,
+        "retrieved_on": "2026-11-23"
       }
     },
     "momoka": {
@@ -63,8 +63,8 @@
         "source": "https://tiktok.com/@peach12299",
         "method": "tiktok_public_page",
         "status": "updated",
-        "count": 349320,
-        "retrieved_on": "2026-11-16"
+        "count": 349826,
+        "retrieved_on": "2026-11-23"
       }
     },
     "nana": {
@@ -81,18 +81,18 @@
         "source": "https://www.tiktok.com/@hino.nana",
         "method": "tiktok_public_page",
         "status": "updated",
-        "count": 47433,
-        "retrieved_on": "2026-11-16"
+        "count": 47395,
+        "retrieved_on": "2026-11-23"
       },
       "youtube": {
         "source": "https://m.youtube.com/@hino.nana11",
         "method": "youtube_public_rounded",
-        "public_rounded_label": "1.13万人",
-        "display": "1.13万",
-        "nominal_face_value": 11300,
+        "public_rounded_label": "1.14万人",
+        "display": "1.14万",
+        "nominal_face_value": 11400,
         "precision": "公開ページの丸め表示。正確な登録者数の整数ではない。合計はこの表示値を千人未満切り捨てした概数。",
         "status": "approximate",
-        "retrieved_on": "2026-11-16"
+        "retrieved_on": "2026-11-23"
       }
     },
     "oto": {
@@ -109,8 +109,8 @@
         "source": "https://www.tiktok.com/@_00_3yu",
         "method": "tiktok_public_page",
         "status": "updated",
-        "count": 265130,
-        "retrieved_on": "2026-11-16"
+        "count": 265098,
+        "retrieved_on": "2026-11-23"
       }
     },
     "ririka": {
@@ -127,8 +127,8 @@
         "source": "https://www.tiktok.com/@riri_.cony03",
         "method": "tiktok_public_page",
         "status": "updated",
-        "count": 111136,
-        "retrieved_on": "2026-11-16"
+        "count": 111217,
+        "retrieved_on": "2026-11-23"
       }
     },
     "sae": {
@@ -145,8 +145,8 @@
         "source": "https://www.tiktok.com/@saeeoky",
         "method": "tiktok_public_page",
         "status": "updated",
-        "count": 7577,
-        "retrieved_on": "2026-11-16"
+        "count": 7569,
+        "retrieved_on": "2026-11-23"
       }
     },
     "saki": {
@@ -174,8 +174,8 @@
         "source": "https://www.tiktok.com/@yui___12.8",
         "method": "tiktok_public_page",
         "status": "updated",
-        "count": 98789,
-        "retrieved_on": "2026-11-16"
+        "count": 98971,
+        "retrieved_on": "2026-11-23"
       }
     }
   },
